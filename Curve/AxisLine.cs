@@ -25,7 +25,6 @@ namespace Curve
             RawVector2 rs= new RawVector2(StartPointX,StartPointY);
             RawVector2 re = new RawVector2(EndPointX, EndPointY);
             var brush = new SharpDX.Direct2D1.SolidColorBrush(cp._renderTarget,color);
-            cp._renderTarget.BeginDraw();
             cp._renderTarget.DrawLine(rs,re,brush,0.5F);
             arrow(color);
             if (ShowVirtualLine.Visible == lp.showVirtualLine)//绘制虚线
@@ -37,7 +36,6 @@ namespace Curve
             LineScale ls = new LineScale(cp, lp);//刻度线
             ls.color = color;
             ls.Draw();
-            cp._renderTarget.EndDraw();
         }
 
         private void arrow(RawColor4 color)

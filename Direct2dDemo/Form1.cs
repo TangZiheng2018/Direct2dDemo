@@ -128,7 +128,7 @@ namespace Direct2dDemo
 
         private void panel1_MouseMove(object sender, MouseEventArgs e)
         {
-
+            mc.Draw(e.Location.X, e.Location.Y);
         }
 
         private void panel1_Click(object sender, EventArgs e)

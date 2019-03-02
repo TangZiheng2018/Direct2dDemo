@@ -57,9 +57,16 @@ namespace Curve
         //隐藏
         Hide = 1
     }
+    public enum ShowCursorData
+    {
+        //显示
+        Visible = 0,
+        //隐藏
+        Hide = 1
+    }
     public class MainCurve
     {
-        RawColor4 color = new RawColor4(0, 0,1, 1);
+        RawColor4 color = new RawColor4(0, 0, 1, 1);
         CanvasParam canvasparam = new CanvasParam();
         D2D.Factory factory = new D2D.Factory();
         DW.Factory dwfactory = new DW.Factory();
@@ -67,39 +74,66 @@ namespace Curve
         D2D.RenderTargetProperties renderTargetProperties;
         D2D.HwndRenderTargetProperties hwndRenderTargetProperties = new D2D.HwndRenderTargetProperties();
         List<DataLine> dlList = new List<DataLine>();
+        List<AxisLineParam> listAxisParam = new List<AxisLineParam>();
+        List<BaseLine> listBaseLine = new List<BaseLine>();
         private D2D.RenderTarget _renderTarget;
         public MainCurve(Panel panel)
         {
             renderTargetProperties = new D2D.RenderTargetProperties(D2D.RenderTargetType.Default, pf, 0, 0, D2D.RenderTargetUsage.None, D2D.FeatureLevel.Level_DEFAULT);
-            hwndRenderTargetProperties.Hwnd =panel.Handle;
-            hwndRenderTargetProperties.PixelSize = new SharpDX.Size2(panel.Width,panel.Height);
+            hwndRenderTargetProperties.Hwnd = panel.Handle;
+            hwndRenderTargetProperties.PixelSize = new SharpDX.Size2(panel.Width, panel.Height);
             _renderTarget = new D2D.WindowRenderTarget(factory, renderTargetProperties, hwndRenderTargetProperties);
+            InitDataline();
         }
-        public void Draw(float x,float y)
-        {     
+        private void InitDataline()
+        {
             coordinate();
-            _renderTarget.BeginDraw();
             DataLine dl = new DataLine(canvasparam, listAxisParam, "Temp");
             dl.Caption = "T1";
             dl.lineWith = 2;
             dl.listData = CreateData(50);
             RawColor4 color = new RawColor4(1, 0, 0, 1);
             dl.color = color;
-            dl.Draw();
             dlList.Add(dl);
-            _renderTarget.EndDraw();
+        }
+        public void Draw(float x,float y)
+        {
             _renderTarget.BeginDraw();
-            CursorData(x, y);     
+            _renderTarget.Clear(new RawColor4(0.752F, 0.862F, 0752F, 0));
+
+            foreach (var item in listBaseLine)
+            {
+                item.Draw();
+            }
+            for (int i = 0; i < dlList.Count; i++)
+            {
+                dlList[i].Draw();
+            }
+             CursorData(x, y);     
             _renderTarget.EndDraw();
         }
         private void CursorData(float x, float y)
         {
-            string value = "";
+            if (canvasparam.showcursordata==ShowCursorData.Hide)
+            {
+                return;
+            }
+            string value = "时间：";
+            float time = 0F;
+            if (dlList.Count>0)
+            {
+                var c= listAxisParam.Find(t => t.Attributes == "Time");
+                time = (x - canvasparam.OriginX) < 0 ? 0 : (x - canvasparam.OriginX) / (dlList[0].Hlength/(c.MaxScale - c.MinScale));
+            }
+            value +=time.ToString("f2") + "\r\n";
             for (int i = 0; i <dlList.Count ; i++)
             {
-                value = dlList[i].Caption + ":" + dlList[i].GetLineData(x, y);
-            }
-            var brush = new SharpDX.Direct2D1.SolidColorBrush(_renderTarget, new RawColor4(0,0,0,1));
+                value += dlList[i].Caption + ":" + dlList[i].GetLineData(x, y)+"\r\n";
+            }  
+            var brush = new SharpDX.Direct2D1.SolidColorBrush(_renderTarget, new RawColor4(0,0,1,1));
+            RawVector2 pointS = new RawVector2(x,canvasparam.OriginY);
+            RawVector2 pointE = new RawVector2(x, canvasparam.OriginY-canvasparam.VerticalLength);
+            _renderTarget.DrawLine(pointS, pointE, brush);
             _renderTarget.DrawText(value, new TextFormat(dwfactory, "Arial", 12), new RawRectangleF(x, y, x + 100, y + 100), brush);
         }
         private List<LineDataModel> CreateData(int count)
@@ -117,12 +151,8 @@ namespace Curve
             }
             return data;
         }
-        List<AxisLineParam> listAxisParam = new List<AxisLineParam>();
         public void coordinate()
         {
-            _renderTarget.BeginDraw();
-            _renderTarget.Clear(new RawColor4(0.752F, 0.862F, 0752F, 0));
-            _renderTarget.EndDraw();
             canvasparam.factory = factory;
             canvasparam.dwFactory = dwfactory;
             canvasparam.ArrowLength = 6;
@@ -134,7 +164,8 @@ namespace Curve
             canvasparam.BlankLegend = 30;
             canvasparam.ScaleLength = 5;
             canvasparam.ScalePadding = 0;
-
+            canvasparam.showcursordata = ShowCursorData.Hide;
+            canvasparam.showdatapoint = ShowDataPoint.Hide;
             AxisLineParam bHParam = new AxisLineParam();
             bHParam.Direction = LineDirection.Horizontal;
             bHParam.MaxScale = 60;
@@ -143,9 +174,9 @@ namespace Curve
             bHParam.showVirtualLine = ShowVirtualLine.Visible;
             bHParam.Caption = "Time(Min)";
             bHParam.Attributes = "Time";
-            AxisLine bH = new AxisLine(canvasparam, bHParam);
+            BaseLine bH = new AxisLine(canvasparam, bHParam);
             bH.color = color;
-            bH.Draw();
+            //bH.Draw();
 
             AxisLineParam bVParam = new AxisLineParam();
             bVParam.lineVisible = LineVisiable.Visible;
@@ -156,9 +187,9 @@ namespace Curve
             bVParam.CellScale =10;
             bVParam.Caption = "Temp";
             bVParam.Attributes = "Temp";
-            AxisLine bV = new AxisLine(canvasparam, bVParam);
+            BaseLine bV = new AxisLine(canvasparam, bVParam);
             bV.color = color;
-            bV.Draw();
+            //bV.Draw();
 
             AxisLineParam PowerParam = new AxisLineParam();
             PowerParam.lineVisible = LineVisiable.Visible;
@@ -173,8 +204,10 @@ namespace Curve
             PowerParam.Index = 0;
             BaseLine bPower = new AxisLine(canvasparam, PowerParam);
             bPower.color = color;
-            bPower.Draw();
-
+            //bPower.Draw();
+            listBaseLine.Add(bV);
+            listBaseLine.Add(bH);
+            listBaseLine.Add(bPower);
             listAxisParam.Add(bVParam);
             listAxisParam.Add(bHParam);
             listAxisParam.Add(PowerParam);

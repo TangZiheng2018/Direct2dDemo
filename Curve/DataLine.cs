@@ -63,6 +63,7 @@ namespace Curve
         }
         private void calculate()
         {
+            data.Clear();
             if (listData == null)
             {
                 return;
@@ -99,7 +100,6 @@ namespace Curve
             {
                 cp._renderTarget.DrawLine(pfdata[i], pfdata[i + 1], brush, lineWith);
             }
-
         }
         private void DrawDataPoint(RawVector2[] pfdata)
         {
