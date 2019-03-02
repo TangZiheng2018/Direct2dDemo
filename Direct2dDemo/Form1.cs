@@ -47,7 +47,7 @@ namespace Direct2dDemo
             _renderTarget.BeginDraw();
             _renderTarget.Clear(new RawColor4(0.752F, 0.862F, 0752F, 0));
             _renderTarget.DrawEllipse(ellipse, brush, 1);
-
+            _renderTarget.FillEllipse(ellipse, brush);
             _renderTarget.EndDraw();
         }
 
@@ -57,7 +57,6 @@ namespace Direct2dDemo
             {
                 return;
             }
-
             _renderTarget.BeginDraw();
             var brush = new D2D.SolidColorBrush(_renderTarget, new SharpDX.Mathematics.Interop.RawColor4(0, 1, 0, 1));
             _renderTarget.Clear(new RawColor4(0.752F, 0.862F, 0752F, 0));
@@ -124,7 +123,22 @@ namespace Direct2dDemo
         MainCurve mc = null;
         private void button6_Click(object sender, EventArgs e)
         {
-            mc.Draw();
+            mc.Draw(100,100);
+        }
+
+        private void panel1_MouseMove(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        private void panel1_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void panel1_MouseDown(object sender, MouseEventArgs e)
+        {
+            mc.Draw(e.Location.X, e.Location.Y);
         }
     }
 }

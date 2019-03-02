@@ -56,7 +56,10 @@
     <Compile Include="AxisLine.cs" />
     <Compile Include="BaseLine.cs" />
     <Compile Include="CanvasParam.cs" />
-    <Compile Include="LineParam.cs" />
+    <Compile Include="AxisLineParam.cs" />
+    <Compile Include="DataLine.cs" />
+    <Compile Include="DataLineParam.cs" />
+    <Compile Include="LineDataModel.cs" />
     <Compile Include="LineScale.cs" />
     <Compile Include="MainCurve.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

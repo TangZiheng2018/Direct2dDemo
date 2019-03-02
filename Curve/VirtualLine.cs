@@ -12,12 +12,12 @@ namespace Curve
     {
         private List<RawVector2> listpointS = new List<RawVector2>();
         private List<RawVector2> listpointE = new List<RawVector2>();
-        private LineParam lp { set; get; }
+        private AxisLineParam lp { set; get; }
         float Hlength { set; get; }//纵向减去箭头的长度
         float Vlength { set; get; }//横向向减去箭头的长度
         private float ScaleCount { set; get; }
         private float cellLength { set; get; }
-        public VirtualLine(CanvasParam _cp, LineParam lp)
+        public VirtualLine(CanvasParam _cp, AxisLineParam lp):base(_cp)
         {
             cp = _cp;
             this.lp = lp;
@@ -27,7 +27,7 @@ namespace Curve
             Hlength = cp.HorizontalLength - cp.ArrowLength - cp.BlankLegend;//减去箭头的长度
             Vlength = cp.VerticalLength - cp.ArrowLength - cp.BlankLegend;
         }
-        public override void Draw(RawColor4 color)
+        public override void Draw()
         {
             calculate();
             var strokeStyleProperties = new SharpDX.Direct2D1.StrokeStyleProperties();
@@ -44,22 +44,6 @@ namespace Curve
         //竖向
         private void calculateVertical()
         {
-            cellLength = Hlength / ScaleCount;//求单位长度
-            for (int i = 0; i < ScaleCount; i++)
-            {
-                RawVector2 pfS = new RawVector2();
-                RawVector2 pfE = new RawVector2();
-                pfS.X = StartPointX + cellLength * (i + 1);
-                pfS.Y = StartPointY;
-                pfE.X = StartPointX + cellLength * (i + 1);
-                pfE.Y = StartPointY - Vlength;
-                listpointS.Add(pfS);
-                listpointE.Add(pfE);
-            }
-        }
-        //横向
-        private void calculateHorizontal()
-        {
             cellLength = Vlength / ScaleCount;//求单位长度
             for (int i = 0; i < ScaleCount; i++)
             {
@@ -69,6 +53,22 @@ namespace Curve
                 pfS.Y = StartPointY - cellLength * (i + 1);
                 pfE.X = StartPointX + Hlength;
                 pfE.Y = StartPointY - cellLength * (i + 1);
+                listpointS.Add(pfS);
+                listpointE.Add(pfE);
+            }
+        }
+        //横向
+        private void calculateHorizontal()
+        {
+            cellLength = Hlength / ScaleCount;//求单位长度
+            for (int i = 0; i < ScaleCount; i++)
+            {
+                RawVector2 pfS = new RawVector2();
+                RawVector2 pfE = new RawVector2();
+                pfS.X = StartPointX + cellLength * (i + 1);
+                pfS.Y = StartPointY;
+                pfE.X = StartPointX + cellLength * (i + 1);
+                pfE.Y = StartPointY - Vlength;
                 listpointS.Add(pfS);
                 listpointE.Add(pfE);
             }

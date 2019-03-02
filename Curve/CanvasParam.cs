@@ -25,6 +25,7 @@ namespace Curve
         public float ScalePadding { set; get; }
         public D2D.Factory factory { set; get; }
         public DW.Factory dwFactory { set; get; }
+        public ShowDataPoint showdatapoint{set;get;}
 
     }
 }
