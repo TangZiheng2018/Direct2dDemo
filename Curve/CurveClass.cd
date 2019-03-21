@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Curve.AxisLine">
+    <Position X="1.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAgIAAAAAAAAAAAAAAAAAAoAAA=</HashCode>
+      <FileName>AxisLine.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Curve.AxisLineParam">
+    <Position X="5.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAIAAAACAAAAACAAAAAQABAAAIAACAEABAAAAAA=</HashCode>
+      <FileName>AxisLineParam.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Curve.BaseLine">
+    <Position X="3.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgEAYgAACAAAAAAAAAAAAACIAIAAAAAAAAA=</HashCode>
+      <FileName>BaseLine.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Curve.CanvasParam">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAACACwDAAAAAAAQAEAAAQAAAAAAAAIAAIBAAA=</HashCode>
+      <FileName>CanvasParam.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Curve.DataLine">
+    <Position X="3.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAACAAAAAARgAAAAAAIAARAAABAACASQAQAAAAgAE=</HashCode>
+      <FileName>DataLine.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Curve.DataLineParam">
+    <Position X="7" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DataLineParam.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Curve.LineDataModel">
+    <Position X="12.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAgQAAAAAA=</HashCode>
+      <FileName>LineDataModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Curve.LineScale">
+    <Position X="6.25" Y="4.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAEAAgAAAgIAAAAAIAAAIIAAgAAIAAAEAAgAAAg=</HashCode>
+      <FileName>LineScale.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Curve.MainCurve" Collapsed="true">
+    <Position X="9.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAABAhAgAABAQAQCEAAAQAUECAAAAQAAAAAAA=</HashCode>
+      <FileName>MainCurve.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Curve.VirtualLine">
+    <Position X="9.25" Y="4.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAgAAAgIAAAAAIAAAIIAAAAAIAAAEAAgAAAg=</HashCode>
+      <FileName>VirtualLine.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="Curve.LineVisiable">
+    <Position X="9" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>MainCurve.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Curve.LineDirection" Collapsed="true">
+    <Position X="10.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MainCurve.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Curve.LineLocation">
+    <Position X="12.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACACAAAAAAAA=</HashCode>
+      <FileName>MainCurve.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Curve.ShowVirtualLine" Collapsed="true">
+    <Position X="8.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>MainCurve.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Curve.DataUnit" Collapsed="true">
+    <Position X="9" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEKAAAA=</HashCode>
+      <FileName>MainCurve.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Curve.ShowDataPoint" Collapsed="true">
+    <Position X="12.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>MainCurve.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Curve.ShowCursorData" Collapsed="true">
+    <Position X="10.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>MainCurve.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Microsoft YaHei UI" Size="9" />
+</ClassDiagram>

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -35,6 +36,11 @@
             this.button5 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.button6 = new System.Windows.Forms.Button();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.时间宽度ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.光标数据ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.数据秒点ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
@@ -89,6 +95,7 @@
             // 
             // panel1
             // 
+            this.panel1.ContextMenuStrip = this.contextMenuStrip1;
             this.panel1.Location = new System.Drawing.Point(13, 56);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(785, 318);
@@ -107,6 +114,39 @@
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.时间宽度ToolStripMenuItem,
+            this.光标数据ToolStripMenuItem,
+            this.数据秒点ToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 92);
+            // 
+            // 时间宽度ToolStripMenuItem
+            // 
+            this.时间宽度ToolStripMenuItem.CheckOnClick = true;
+            this.时间宽度ToolStripMenuItem.Name = "时间宽度ToolStripMenuItem";
+            this.时间宽度ToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.时间宽度ToolStripMenuItem.Text = "时间宽度";
+            this.时间宽度ToolStripMenuItem.Click += new System.EventHandler(this.时间宽度ToolStripMenuItem_Click);
+            // 
+            // 光标数据ToolStripMenuItem
+            // 
+            this.光标数据ToolStripMenuItem.CheckOnClick = true;
+            this.光标数据ToolStripMenuItem.Name = "光标数据ToolStripMenuItem";
+            this.光标数据ToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.光标数据ToolStripMenuItem.Text = "光标数据";
+            this.光标数据ToolStripMenuItem.Click += new System.EventHandler(this.光标数据ToolStripMenuItem_Click);
+            // 
+            // 数据秒点ToolStripMenuItem
+            // 
+            this.数据秒点ToolStripMenuItem.CheckOnClick = true;
+            this.数据秒点ToolStripMenuItem.Name = "数据秒点ToolStripMenuItem";
+            this.数据秒点ToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.数据秒点ToolStripMenuItem.Text = "数据描点";
+            this.数据秒点ToolStripMenuItem.Click += new System.EventHandler(this.数据秒点ToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -122,6 +162,7 @@
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -135,6 +176,10 @@
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem 时间宽度ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 光标数据ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 数据秒点ToolStripMenuItem;
     }
 }
 

@@ -95,15 +95,19 @@ namespace Direct2dDemo
         private void button4_Click(object sender, EventArgs e)
         {
             var strokeStyleProperties = new D2D.StrokeStyleProperties();
-            strokeStyleProperties.DashStyle = D2D.DashStyle.Dash;
+            float[] dashes = { 20,10};
+   
+            strokeStyleProperties.DashStyle = D2D.DashStyle.Custom;
+            
             //strokeStyleProperties.DashCap = D2D.CapStyle.Square;
-            strokeStyleProperties.DashOffset = 0;
-            var strokeStyle = new StrokeStyle(factory, strokeStyleProperties);
-            var brush = new D2D.SolidColorBrush(_renderTarget, new SharpDX.Mathematics.Interop.RawColor4(1, 0, 0, 1));
+            //strokeStyleProperties.DashOffset = 5;
+            var strokeStyle = new StrokeStyle(factory, strokeStyleProperties,dashes);
+            strokeStyle.GetDashes(dashes, 2);
+            var brush = new D2D.SolidColorBrush(_renderTarget, new SharpDX.Mathematics.Interop.RawColor4(0.439F,0.501F, 0.564F, 1));
 
             _renderTarget.BeginDraw();
             _renderTarget.Clear(new RawColor4(0.752F, 0.862F, 0752F, 0));
-            _renderTarget.DrawLine(new RawVector2(100, 50), new RawVector2(500, 50), brush, 2, strokeStyle);
+            _renderTarget.DrawLine(new RawVector2(100, 50), new RawVector2(500, 50), brush, 0.5F, strokeStyle);
 
 
             _renderTarget.EndDraw();
@@ -128,7 +132,7 @@ namespace Direct2dDemo
 
         private void panel1_MouseMove(object sender, MouseEventArgs e)
         {
-            mc.Draw(e.Location.X, e.Location.Y);
+            //mc.Draw(e.Location.X, e.Location.Y);
         }
 
         private void panel1_Click(object sender, EventArgs e)
@@ -138,7 +142,41 @@ namespace Direct2dDemo
 
         private void panel1_MouseDown(object sender, MouseEventArgs e)
         {
-            mc.Draw(e.Location.X, e.Location.Y);
+            //mc.Draw(e.Location.X, e.Location.Y);
+        }
+
+        private void 时间宽度ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void 光标数据ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mc.canvasparam.showcursordata == ShowCursorData.Hide)
+            {
+                mc.canvasparam.showcursordata = ShowCursorData.Visible;
+            }
+            else
+            {
+                mc.canvasparam.showcursordata = ShowCursorData.Hide;
+            }         
+        }
+
+        private void 数据秒点ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mc.canvasparam.showdatapoint == ShowDataPoint.Hide)
+            {
+                mc.canvasparam.showdatapoint = ShowDataPoint.Visible;
+            }
+            else
+            {
+                mc.canvasparam.showdatapoint = ShowDataPoint.Hide;
+            }
+        }
+
+        private void toolStripComboBox1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

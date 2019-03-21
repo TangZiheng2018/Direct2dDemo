@@ -31,11 +31,12 @@ namespace Curve
         {
             calculate();
             var strokeStyleProperties = new SharpDX.Direct2D1.StrokeStyleProperties();
-            strokeStyleProperties.DashStyle = SharpDX.Direct2D1.DashStyle.Dash;
-            strokeStyleProperties.DashCap = SharpDX.Direct2D1.CapStyle.Square;
-            strokeStyleProperties.DashOffset = 0.2F;
-            var strokeStyle = new StrokeStyle(cp.factory, strokeStyleProperties);
-            var brush = new SharpDX.Direct2D1.SolidColorBrush(cp._renderTarget, color);
+            strokeStyleProperties.DashStyle = SharpDX.Direct2D1.DashStyle.Custom;
+            float[] dashes = { 10, 5 };
+            //strokeStyleProperties.DashCap = SharpDX.Direct2D1.CapStyle.Square;
+            //strokeStyleProperties.DashOffset = 0.2F;
+            var strokeStyle = new StrokeStyle(cp.factory, strokeStyleProperties,dashes);
+            var brush = new SharpDX.Direct2D1.SolidColorBrush(cp._renderTarget, new RawColor4(0.439F, 0.501F, 0.564F,1));
             for (int i = 0; i < ScaleCount; i++)
             {
                 cp._renderTarget.DrawLine(listpointS[i], listpointE[i],brush, 0.5F, strokeStyle);

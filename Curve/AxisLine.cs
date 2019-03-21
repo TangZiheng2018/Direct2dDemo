@@ -9,15 +9,15 @@ namespace Curve
 {
     public class AxisLine : BaseLine
     {
-        public AxisLineParam lp { set; get; }
-        public AxisLine(CanvasParam _cp, AxisLineParam lp):base(_cp)
+        public AxisLineParam axislineparam { set; get; }
+        public AxisLine(CanvasParam _cp, AxisLineParam axislineparam) :base(_cp)
         {
             cp = _cp;
-            this.lp = lp;
+            this.axislineparam = axislineparam;
         }
         public override void Draw()
         {
-            if (lp.lineVisible==LineVisiable.Hide)
+            if (axislineparam.lineVisible==LineVisiable.Hide)
             {
                 return;
             }
@@ -27,13 +27,13 @@ namespace Curve
             var brush = new SharpDX.Direct2D1.SolidColorBrush(cp._renderTarget,color);
             cp._renderTarget.DrawLine(rs,re,brush,0.5F);
             arrow(color);
-            if (ShowVirtualLine.Visible == lp.showVirtualLine)//绘制虚线
+            if (ShowVirtualLine.Visible == axislineparam.showVirtualLine)//绘制虚线
             {
-                VirtualLine vl = new VirtualLine(cp, lp);
+                VirtualLine vl = new VirtualLine(cp, axislineparam);
                 vl.color = color;
                 vl.Draw();
             }
-            LineScale ls = new LineScale(cp, lp);//刻度线
+            LineScale ls = new LineScale(cp, axislineparam);//刻度线
             ls.color = color;
             ls.Draw();
         }
@@ -44,7 +44,7 @@ namespace Curve
             RawVector2[] points = new RawVector2[3];
             points[0].X = EndPointX;
             points[0].Y = EndPointY;
-            if (LineDirection.Vertical == lp.Direction)
+            if (LineDirection.Vertical == axislineparam.Direction)
             {
                 points[1].X = EndPointX - arrowLength / 2;
                 points[1].Y = EndPointY + arrowLength;
@@ -65,9 +65,9 @@ namespace Curve
         }
         private void calculate()
         {
-            if (lp.Direction == LineDirection.Vertical)
+            if (axislineparam.Direction == LineDirection.Vertical)
             {
-                if (lp.lineLocation == LineLocation.Left)
+                if (axislineparam.lineLocation == LineLocation.Left)
                 {
                     StartPointX = cp.OriginX;
                     StartPointY = cp.OriginY;
@@ -76,9 +76,9 @@ namespace Curve
                 }
                 else
                 {
-                    StartPointX = cp.OriginX + Hlength + lp.Index * 10;
+                    StartPointX = cp.OriginX + Hlength + axislineparam.Index * 10;
                     StartPointY = cp.OriginY;
-                    EndPointX = cp.OriginX + Hlength + lp.Index * 10;
+                    EndPointX = cp.OriginX + Hlength + axislineparam.Index * 10;
                     EndPointY = StartPointY - cp.VerticalLength;
                 }
             }
@@ -98,17 +98,17 @@ namespace Curve
             var textformat = new SharpDX.DirectWrite.TextFormat(cp.dwFactory, "Arial", 12);
             unitX = PointX;
             unitY = PointY;
-            if (lp.lineLocation == LineLocation.Left)
+            if (axislineparam.lineLocation == LineLocation.Left)
             {
                 unitX = PointX - 30;
                 unitY = PointY+2;
             }
-            if (lp.Direction == LineDirection.Horizontal)
+            if (axislineparam.Direction == LineDirection.Horizontal)
             {
                 unitX = PointX - 20;
                 unitY = PointY+2;
             }
-            cp._renderTarget.DrawText(lp.Caption, textformat, new RawRectangleF(unitX, unitY, unitX + 200, unitY + 200), unitbrush);
+            cp._renderTarget.DrawText(axislineparam.Caption, textformat, new RawRectangleF(unitX, unitY, unitX + 200, unitY + 200), unitbrush);
         }
     }
 }

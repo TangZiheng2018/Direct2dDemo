@@ -67,7 +67,7 @@ namespace Curve
     public class MainCurve
     {
         RawColor4 color = new RawColor4(0, 0, 1, 1);
-        CanvasParam canvasparam = new CanvasParam();
+      public  CanvasParam canvasparam = new CanvasParam();
         D2D.Factory factory = new D2D.Factory();
         DW.Factory dwfactory = new DW.Factory();
         D2D.PixelFormat pf = new PixelFormat(Format.B8G8R8A8_UNorm, SharpDX.Direct2D1.AlphaMode.Ignore);
@@ -91,7 +91,7 @@ namespace Curve
             DataLine dl = new DataLine(canvasparam, listAxisParam, "Temp");
             dl.Caption = "T1";
             dl.lineWith = 2;
-            dl.listData = CreateData(50);
+            dl.listData = CreateData(10000);
             RawColor4 color = new RawColor4(1, 0, 0, 1);
             dl.color = color;
             dlList.Add(dl);
@@ -168,9 +168,9 @@ namespace Curve
             canvasparam.showdatapoint = ShowDataPoint.Hide;
             AxisLineParam bHParam = new AxisLineParam();
             bHParam.Direction = LineDirection.Horizontal;
-            bHParam.MaxScale = 60;
+            bHParam.MaxScale = 10000;
             bHParam.MinScale = 0;
-            bHParam.CellScale = 10;
+            bHParam.CellScale = 1000;
             bHParam.showVirtualLine = ShowVirtualLine.Visible;
             bHParam.Caption = "Time(Min)";
             bHParam.Attributes = "Time";
