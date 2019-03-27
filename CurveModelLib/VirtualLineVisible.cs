@@ -9,19 +9,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-public class CanvasParam
+public enum VirtualLineVisible
 {
-	public virtual float OriginX
-	{
-		get;
-		set;
-	}
-
-	public virtual float OriginY
-	{
-		get;
-		set;
-	}
-
+	Visible = 0,
+	Hide = 1,
 }
-

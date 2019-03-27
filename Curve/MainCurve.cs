@@ -67,7 +67,7 @@ namespace Curve
     public class MainCurve
     {
         RawColor4 color = new RawColor4(0, 0, 1, 1);
-      public  CanvasParam canvasparam = new CanvasParam();
+        public  CanvasParam canvasparam = new CanvasParam();
         D2D.Factory factory = new D2D.Factory();
         DW.Factory dwfactory = new DW.Factory();
         D2D.PixelFormat pf = new PixelFormat(Format.B8G8R8A8_UNorm, SharpDX.Direct2D1.AlphaMode.Ignore);

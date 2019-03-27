@@ -6,30 +6,44 @@
   <MessageClass Name="Error" Label="错误" Option="显示错误" />
   <MessageClass Name="Property" Label="属性" Option="显示元数据" />
   <MessageClass Name="Diagnostic" Label="消息" Option="显示诊断消息" />
-  <Message Timestamp="2019-03-21T22:03:30" Importance="High" Text="已启动代码生成或文本转换。" />
-  <Message Timestamp="2019-03-21T22:03:30" Importance="Diagnostic" Text="名称 = ClassTemplate" />
-  <Message Timestamp="2019-03-21T22:03:30" Importance="Diagnostic" Text="覆盖 = True" />
-  <Message Timestamp="2019-03-21T22:03:30" Importance="Diagnostic" Text="ProjectPath = ..\CurveModelLib\CurveModelLib.csproj" />
-  <Message Timestamp="2019-03-21T22:03:30" Importance="Diagnostic" Text="TargetDirectory = GeneratedCode\{PackageStructure}" />
-  <Message Timestamp="2019-03-21T22:03:30" Importance="Diagnostic" Text="TargetName = {Name}" />
-  <Message Timestamp="2019-03-21T22:03:30" Importance="Diagnostic" Text="TemplateFilePath = C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 14.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\ClassTemplate.t4" />
-  <Message Timestamp="2019-03-21T22:03:30" Importance="Diagnostic" Text="ResolvedTemplateFilePath = C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 14.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\ClassTemplate.t4" />
-  <Message Timestamp="2019-03-21T22:03:30" Importance="Medium" Text="CurveModel 的文本模板绑定: “ClassTemplate”会将 ClassTemplate.t4 应用于: “CurveModel::BaseLine”- (Class), “CurveModel::CanvasParam”- (Class), “CurveModel::CoordinateAxis”- (Class) " />
-  <Message Timestamp="2019-03-21T22:03:31" Importance="Medium" Text="“CurveModel::BaseLine”- (Class) : 成功(已替换文件) - E:\GitHub\Direct2dDemo\CurveModelLib\GeneratedCode\BaseLine.cs" />
-  <Message Timestamp="2019-03-21T22:03:31" Importance="Medium" Text="“CurveModel::CanvasParam”- (Class) : 成功(已替换文件) - E:\GitHub\Direct2dDemo\CurveModelLib\GeneratedCode\CanvasParam.cs" />
-  <Message Timestamp="2019-03-21T22:03:31" Importance="Medium" Text="“CurveModel::CoordinateAxis”- (Class) : 成功(已替换文件) - E:\GitHub\Direct2dDemo\CurveModelLib\GeneratedCode\CoordinateAxis.cs" />
-  <Message Timestamp="2019-03-21T22:03:31" Importance="Diagnostic" Text="名称 = StructTemplate" />
-  <Message Timestamp="2019-03-21T22:03:31" Importance="Diagnostic" Text="覆盖 = True" />
-  <Message Timestamp="2019-03-21T22:03:31" Importance="Diagnostic" Text="ProjectPath = ..\CurveModelLib\CurveModelLib.csproj" />
-  <Message Timestamp="2019-03-21T22:03:31" Importance="Diagnostic" Text="TargetDirectory = GeneratedCode\{PackageStructure}" />
-  <Message Timestamp="2019-03-21T22:03:31" Importance="Diagnostic" Text="TargetName = {Name}" />
-  <Message Timestamp="2019-03-21T22:03:31" Importance="Diagnostic" Text="TemplateFilePath = C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 14.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\StructTemplate.t4" />
-  <Message Timestamp="2019-03-21T22:03:31" Importance="Diagnostic" Text="ResolvedTemplateFilePath = C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 14.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\StructTemplate.t4" />
-  <Message Timestamp="2019-03-21T22:03:31" Importance="Medium" Text="CurveModel 的文本模板绑定: “StructTemplate”会将 StructTemplate.t4 应用于: “CurveModel::BaseLine”- (Class), “CurveModel::CanvasParam”- (Class), “CurveModel::CoordinateAxis”- (Class) " />
-  <Message Timestamp="2019-03-21T22:03:31" Importance="Diagnostic" Text="“CurveModel::BaseLine”- (Class): 没有生成任何文件，因为模板“StructTemplate.t4”的“AppliesToElement”方法的计算结果为 false。" />
-  <Message Timestamp="2019-03-21T22:03:31" Importance="Diagnostic" Text="“CurveModel::CanvasParam”- (Class): 没有生成任何文件，因为模板“StructTemplate.t4”的“AppliesToElement”方法的计算结果为 false。" />
-  <Message Timestamp="2019-03-21T22:03:32" Importance="Diagnostic" Text="“CurveModel::CoordinateAxis”- (Class): 没有生成任何文件，因为模板“StructTemplate.t4”的“AppliesToElement”方法的计算结果为 false。" />
-  <Message Timestamp="2019-03-21T22:03:32" Importance="Diagnostic" Text="选定内容包含未绑定到模板的 1 元素。" />
-  <Message Timestamp="2019-03-21T22:03:32" Importance="Diagnostic" Text="“a70aace5-79eb-4b41-870a-d9c1f26abcb3”- (Generalization): 没有绑定的模板。" />
-  <Message Timestamp="2019-03-21T22:03:32" Importance="High" Text="代码生成完成。错误: 0。警告: 0。" />
+  <Message Timestamp="2019-03-22T22:23:09" Importance="High" Text="已启动代码生成或文本转换。" />
+  <Message Timestamp="2019-03-22T22:23:09" Importance="Diagnostic" Text="名称 = ClassTemplate" />
+  <Message Timestamp="2019-03-22T22:23:09" Importance="Diagnostic" Text="覆盖 = True" />
+  <Message Timestamp="2019-03-22T22:23:09" Importance="Diagnostic" Text="ProjectPath = ..\CurveModelLib\CurveModelLib.csproj" />
+  <Message Timestamp="2019-03-22T22:23:09" Importance="Diagnostic" Text="TargetDirectory = GeneratedCode\{PackageStructure}" />
+  <Message Timestamp="2019-03-22T22:23:09" Importance="Diagnostic" Text="TargetName = {Name}" />
+  <Message Timestamp="2019-03-22T22:23:09" Importance="Diagnostic" Text="TemplateFilePath = C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 14.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\ClassTemplate.t4" />
+  <Message Timestamp="2019-03-22T22:23:09" Importance="Diagnostic" Text="ResolvedTemplateFilePath = C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 14.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\ClassTemplate.t4" />
+  <Message Timestamp="2019-03-22T22:23:09" Importance="Medium" Text="CurveModel 的文本模板绑定: “ClassTemplate”会将 ClassTemplate.t4 应用于: “CurveModel::BaseLine”- (Class), “CurveModel::CanvasParam”- (Class), “CurveModel::CoordinateParam”- (Class), “CurveModel::CoordinateAxis”- (Class) " />
+  <Message Timestamp="2019-03-22T22:23:29" Importance="Medium" Text="“CurveModel::BaseLine”- (Class) : 成功(已替换文件) - E:\GitHub\Direct2dDemo\CurveModelLib\GeneratedCode\BaseLine.cs" />
+  <Message Timestamp="2019-03-22T22:23:29" Importance="Medium" Text="“CurveModel::CanvasParam”- (Class) : 成功(已替换文件) - E:\GitHub\Direct2dDemo\CurveModelLib\GeneratedCode\CanvasParam.cs" />
+  <Message Timestamp="2019-03-22T22:23:29" Importance="Medium" Text="“CurveModel::CoordinateParam”- (Class) : 成功(已创建文件) - E:\GitHub\Direct2dDemo\CurveModelLib\GeneratedCode\CoordinateParam.cs" />
+  <Message Timestamp="2019-03-22T22:23:30" Importance="Medium" Text="“CurveModel::CoordinateAxis”- (Class) : 成功(已替换文件) - E:\GitHub\Direct2dDemo\CurveModelLib\GeneratedCode\CoordinateAxis.cs" />
+  <Message Timestamp="2019-03-22T22:23:30" Importance="Diagnostic" Text="名称 = EnumTemplate" />
+  <Message Timestamp="2019-03-22T22:23:30" Importance="Diagnostic" Text="覆盖 = True" />
+  <Message Timestamp="2019-03-22T22:23:30" Importance="Diagnostic" Text="ProjectPath = ..\CurveModelLib\CurveModelLib.csproj" />
+  <Message Timestamp="2019-03-22T22:23:30" Importance="Diagnostic" Text="TargetDirectory = GeneratedCode\{PackageStructure}" />
+  <Message Timestamp="2019-03-22T22:23:30" Importance="Diagnostic" Text="TargetName = {Name}" />
+  <Message Timestamp="2019-03-22T22:23:30" Importance="Diagnostic" Text="TemplateFilePath = C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 14.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\EnumTemplate.t4" />
+  <Message Timestamp="2019-03-22T22:23:30" Importance="Diagnostic" Text="ResolvedTemplateFilePath = C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 14.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\EnumTemplate.t4" />
+  <Message Timestamp="2019-03-22T22:23:30" Importance="Medium" Text="CurveModel 的文本模板绑定: “EnumTemplate”会将 EnumTemplate.t4 应用于: “CurveModel::LineDireciton”- (Enumeration), “CurveModel::LineLocation”- (Enumeration), “CurveModel::LineVisible”- (Enumeration), “CurveModel::VirtualLineVisible”- (Enumeration) " />
+  <Message Timestamp="2019-03-22T22:23:30" Importance="Medium" Text="“CurveModel::LineDireciton”- (Enumeration) : 成功(已创建文件) - E:\GitHub\Direct2dDemo\CurveModelLib\GeneratedCode\LineDireciton.cs" />
+  <Message Timestamp="2019-03-22T22:23:30" Importance="Medium" Text="“CurveModel::LineLocation”- (Enumeration) : 成功(已创建文件) - E:\GitHub\Direct2dDemo\CurveModelLib\GeneratedCode\LineLocation.cs" />
+  <Message Timestamp="2019-03-22T22:23:30" Importance="Medium" Text="“CurveModel::LineVisible”- (Enumeration) : 成功(已创建文件) - E:\GitHub\Direct2dDemo\CurveModelLib\GeneratedCode\LineVisible.cs" />
+  <Message Timestamp="2019-03-22T22:23:30" Importance="Medium" Text="“CurveModel::VirtualLineVisible”- (Enumeration) : 成功(已创建文件) - E:\GitHub\Direct2dDemo\CurveModelLib\GeneratedCode\VirtualLineVisible.cs" />
+  <Message Timestamp="2019-03-22T22:23:31" Importance="Diagnostic" Text="名称 = StructTemplate" />
+  <Message Timestamp="2019-03-22T22:23:31" Importance="Diagnostic" Text="覆盖 = True" />
+  <Message Timestamp="2019-03-22T22:23:31" Importance="Diagnostic" Text="ProjectPath = ..\CurveModelLib\CurveModelLib.csproj" />
+  <Message Timestamp="2019-03-22T22:23:31" Importance="Diagnostic" Text="TargetDirectory = GeneratedCode\{PackageStructure}" />
+  <Message Timestamp="2019-03-22T22:23:31" Importance="Diagnostic" Text="TargetName = {Name}" />
+  <Message Timestamp="2019-03-22T22:23:31" Importance="Diagnostic" Text="TemplateFilePath = C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 14.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\StructTemplate.t4" />
+  <Message Timestamp="2019-03-22T22:23:31" Importance="Diagnostic" Text="ResolvedTemplateFilePath = C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 14.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\StructTemplate.t4" />
+  <Message Timestamp="2019-03-22T22:23:31" Importance="Medium" Text="CurveModel 的文本模板绑定: “StructTemplate”会将 StructTemplate.t4 应用于: “CurveModel::BaseLine”- (Class), “CurveModel::CanvasParam”- (Class), “CurveModel::CoordinateParam”- (Class), “CurveModel::CoordinateAxis”- (Class) " />
+  <Message Timestamp="2019-03-22T22:23:31" Importance="Diagnostic" Text="“CurveModel::BaseLine”- (Class): 没有生成任何文件，因为模板“StructTemplate.t4”的“AppliesToElement”方法的计算结果为 false。" />
+  <Message Timestamp="2019-03-22T22:23:31" Importance="Diagnostic" Text="“CurveModel::CanvasParam”- (Class): 没有生成任何文件，因为模板“StructTemplate.t4”的“AppliesToElement”方法的计算结果为 false。" />
+  <Message Timestamp="2019-03-22T22:23:31" Importance="Diagnostic" Text="“CurveModel::CoordinateParam”- (Class): 没有生成任何文件，因为模板“StructTemplate.t4”的“AppliesToElement”方法的计算结果为 false。" />
+  <Message Timestamp="2019-03-22T22:23:31" Importance="Diagnostic" Text="“CurveModel::CoordinateAxis”- (Class): 没有生成任何文件，因为模板“StructTemplate.t4”的“AppliesToElement”方法的计算结果为 false。" />
+  <Message Timestamp="2019-03-22T22:23:31" Importance="Diagnostic" Text="选定内容包含未绑定到模板的 1 元素。" />
+  <Message Timestamp="2019-03-22T22:23:31" Importance="Diagnostic" Text="“a70aace5-79eb-4b41-870a-d9c1f26abcb3”- (Generalization): 没有绑定的模板。" />
+  <Message Timestamp="2019-03-22T22:23:31" Importance="High" Text="代码生成完成。错误: 0。警告: 0。" />
 </Log>

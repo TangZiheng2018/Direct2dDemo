@@ -30,6 +30,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="SharpDX, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpDX.4.2.0\lib\net45\SharpDX.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SharpDX.Direct2D1, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpDX.Direct2D1.4.2.0\lib\net45\SharpDX.Direct2D1.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SharpDX.DXGI, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpDX.DXGI.4.2.0\lib\net45\SharpDX.DXGI.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -41,10 +53,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GeneratedCode\BaseLine.cs" />
-    <Compile Include="GeneratedCode\CanvasParam.cs" />
-    <Compile Include="GeneratedCode\CoordinateAxis.cs" />
+    <Compile Include="CoordinateAxisName.cs" />
+    <Compile Include="DataLine.cs" />
+    <Compile Include="DataUnit.cs" />
+    <Compile Include="BaseLine.cs" />
+    <Compile Include="CanvasParam.cs" />
+    <Compile Include="CoordinateAxis.cs" />
+    <Compile Include="CoordinateParam.cs" />
+    <Compile Include="LineDireciton.cs" />
+    <Compile Include="LineLocation.cs" />
+    <Compile Include="LineVisible.cs" />
+    <Compile Include="VirtualLineVisible.cs" />
+    <Compile Include="LineDataModel.cs" />
+    <Compile Include="MainCurve.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

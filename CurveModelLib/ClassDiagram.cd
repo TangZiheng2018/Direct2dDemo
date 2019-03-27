@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CurveModelLib.DataLine">
+    <Position X="6" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAAEAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>DataLine.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CurveModelLib.MainCurve">
+    <Position X="1" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAIAAAABAgAAAABAAAQCBAAAgAAAAAAAAAQAAIAAA=</HashCode>
+      <FileName>MainCurve.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CurveModelLib.BaseLine">
+    <Position X="6" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEAQgAACAAAAAAgAAAAQAAACAAAgAAAAAA=</HashCode>
+      <FileName>BaseLine.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CurveModelLib.CanvasParam">
+    <Position X="8.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAADAAAAAAAAAAAAAQAAAAAAAIAAAAAAAA=</HashCode>
+      <FileName>CanvasParam.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CurveModelLib.CoordinateAxis">
+    <Position X="8.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAIAAAAAACAggBAIAgAAYAAGAIAAACAAEgAAAAAAA=</HashCode>
+      <FileName>CoordinateAxis.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CurveModelLib.CoordinateParam">
+    <Position X="3.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAABABA=</HashCode>
+      <FileName>CoordinateParam.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CurveModelLib.LineDataModel">
+    <Position X="10.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAgQAAAAAA=</HashCode>
+      <FileName>LineDataModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="VirtualLineVisible">
+    <Position X="12.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>VirtualLineVisible.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="CurveModelLib.CoordinateAxisName">
+    <Position X="12.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgACAAAAAIAAAAAABAAAAAAAEAQA=</HashCode>
+      <FileName>CoordinateAxisName.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="CurveModelLib.DataUnit">
+    <Position X="14" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEKAAAA=</HashCode>
+      <FileName>DataUnit.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="CurveModelLib.LineDireciton">
+    <Position X="12.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>LineDireciton.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="CurveModelLib.LineLocation">
+    <Position X="14" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACACAAAAAAAA=</HashCode>
+      <FileName>LineLocation.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="CurveModelLib.LineVisible">
+    <Position X="14" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>LineVisible.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Microsoft YaHei UI" Size="9" />
+</ClassDiagram>

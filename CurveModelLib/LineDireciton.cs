@@ -8,25 +8,17 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
-public class CoordinateAxis : BaseLine
+namespace CurveModelLib
 {
-	public virtual float ArrowLength
-	{
-		get;
-		set;
-	}
-
-	public virtual float ArrowBlankLength
-	{
-		get;
-		set;
-	}
-
-	public virtual {
-		get;
-		set;
-	}
-
+    public enum LineDireciton
+    {
+        /// <summary>
+        /// 水平方向
+        /// </summary>
+        Horizontal = 0,
+        /// <summary>
+        /// 垂直
+        /// </summary>
+        Vertical = 1,
+    }
 }
-

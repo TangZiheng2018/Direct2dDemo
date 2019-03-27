@@ -8,46 +8,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
-public abstract class BaseLine
+namespace CurveModelLib
 {
-	public virtual RawColor4 Color
-	{
-		get;
-		set;
-	}
-
-	public virtual float StartPointX
-	{
-		get;
-		set;
-	}
-
-	public virtual float EndPointX
-	{
-		get;
-		set;
-	}
-
-	public virtual float StartPointY
-	{
-		get;
-		set;
-	}
-
-	public virtual float EndPointY
-	{
-		get;
-		set;
-	}
-
-	public virtual float LineWidth
-	{
-		get;
-		set;
-	}
-
-	public abstract void Draw();
-
+    public enum LineVisible
+    {
+        Visible = 0,
+        Hide = 1,
+    }
 }
-
