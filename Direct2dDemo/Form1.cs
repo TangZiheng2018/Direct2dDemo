@@ -95,15 +95,15 @@ namespace Direct2dDemo
         private void button4_Click(object sender, EventArgs e)
         {
             var strokeStyleProperties = new D2D.StrokeStyleProperties();
-            float[] dashes = { 20,10};
-   
+            float[] dashes = { 20, 10 };
+
             strokeStyleProperties.DashStyle = D2D.DashStyle.Custom;
-            
+
             //strokeStyleProperties.DashCap = D2D.CapStyle.Square;
             //strokeStyleProperties.DashOffset = 5;
-            var strokeStyle = new StrokeStyle(factory, strokeStyleProperties,dashes);
+            var strokeStyle = new StrokeStyle(factory, strokeStyleProperties, dashes);
             strokeStyle.GetDashes(dashes, 2);
-            var brush = new D2D.SolidColorBrush(_renderTarget, new SharpDX.Mathematics.Interop.RawColor4(0.439F,0.501F, 0.564F, 1));
+            var brush = new D2D.SolidColorBrush(_renderTarget, new SharpDX.Mathematics.Interop.RawColor4(0.439F, 0.501F, 0.564F, 1));
 
             _renderTarget.BeginDraw();
             _renderTarget.Clear(new RawColor4(0.752F, 0.862F, 0752F, 0));
@@ -121,13 +121,13 @@ namespace Direct2dDemo
             _renderTarget.Clear(new RawColor4(0.752F, 0.862F, 0752F, 0));
             textformat.FlowDirection = DW.FlowDirection.TopToBottom;
             textformat.ReadingDirection = DW.ReadingDirection.RightToLeft;
-            _renderTarget.DrawText("-20", textformat, new RawRectangleF(0, 0,200, 200), brush);
+            _renderTarget.DrawText("-20", textformat, new RawRectangleF(0, 0, 200, 200), brush);
             _renderTarget.EndDraw();
         }
         MainCurve mc = null;
         private void button6_Click(object sender, EventArgs e)
         {
-            mc.Draw(100,100);
+            mc.Draw(100, 100);
         }
 
         private void panel1_MouseMove(object sender, MouseEventArgs e)
@@ -137,7 +137,7 @@ namespace Direct2dDemo
 
         private void panel1_Click(object sender, EventArgs e)
         {
-           
+
         }
 
         private void panel1_MouseDown(object sender, MouseEventArgs e)
@@ -147,7 +147,7 @@ namespace Direct2dDemo
 
         private void 时间宽度ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           
+
         }
 
         private void 光标数据ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -159,7 +159,7 @@ namespace Direct2dDemo
             else
             {
                 mc.canvasparam.showcursordata = ShowCursorData.Hide;
-            }         
+            }
         }
 
         private void 数据秒点ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -177,6 +177,33 @@ namespace Direct2dDemo
         private void toolStripComboBox1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            string str = "真的的和那今后";
+            string val = StringToBinary(str);
+            val = BinaryToString(val);
+        }
+        private string StringToBinary(string str)
+        {
+            byte[] data = Encoding.Unicode.GetBytes(str);
+            StringBuilder sb = new StringBuilder(data.Length * 8);
+            foreach (byte item in data)
+            {
+                sb.Append(Convert.ToString(item, 2).PadLeft(8, '0'));
+            }
+            return sb.ToString();
+        }
+        private string BinaryToString(string str)
+        {
+            System.Text.RegularExpressions.CaptureCollection cs = System.Text.RegularExpressions.Regex.Match(str, @"([01]{8})+").Groups[1].Captures;
+            byte[] data = new byte[cs.Count];
+            for (int i = 0; i < cs.Count; i++)
+            {
+                data[i] = Convert.ToByte(cs[i].Value, 2);
+            }
+            return Encoding.Unicode.GetString(data, 0, data.Length);
         }
     }
 }

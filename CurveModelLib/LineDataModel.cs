@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace CurveModelLib
 {
   public class LineDataModel
-    {
+  {
         public LineDataModel()
         {
             dataUnit = DataUnit.M;

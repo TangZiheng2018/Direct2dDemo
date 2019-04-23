@@ -12,35 +12,17 @@ namespace CurveModelLib
 {
     public class CoordinateParam
     {
-        public virtual float ArrowBlankLength
-        {
-            get;
-            set;
-        }
-
-        public virtual float ArrowLength
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// 横轴长度
-        /// </summary>
-        public virtual float HLength
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// 纵轴长度
-        /// </summary>
-        public virtual float VLength
-        {
-            get;
-            set;
-        }
-
+        public string Caption { get; set; }
+        public CoordinateAxisName Name { get; set; }
+        public VirtualLineVisible virtualLineVisible { get; set; }
+        public LineVisible lineVisible { get; set; }
+        public LineDireciton lineDirection { get; set; }
+        public LineLocation lineLocation { set; get; }
+        public int MaxValue { get; set; }
+        public int MinValue { get; set; }
+        public float Interval { set; get; }
+        public int Index { set; get; }
+        public float UnitLength { set; get; }
+        public float LineWidth { set; get; }
     }
 }

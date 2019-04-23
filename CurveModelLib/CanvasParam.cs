@@ -12,7 +12,7 @@ namespace CurveModelLib
 {
     public class CanvasParam
     {
-
+        public SharpDX.Direct2D1.RenderTarget _renderTarget { set; get; }
         /// <summary>
         /// 源点X
         /// </summary>

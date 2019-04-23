@@ -13,9 +13,14 @@ namespace CurveModelLib
             this.name = name;
         }
         public List<LineDataModel> LineData { get; set; }
-        CoordinateAxisName name;
+        private float UnitLength { set; get; }
+        public  CoordinateAxisName name { set; get; }
+        public CanvasParam cp { set; get; }
+        public string Caption { get; set; } 
+        public CoordinateParam coordianteParam {set; get;}
         public override void Draw()
         {
+            UnitLength = coordianteParam.UnitLength;
             throw new NotImplementedException();
         }
     }

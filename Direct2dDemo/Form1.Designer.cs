@@ -35,11 +35,12 @@
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button6 = new System.Windows.Forms.Button();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.时间宽度ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.光标数据ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.数据秒点ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.button6 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -104,6 +105,39 @@
             this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
             this.panel1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseMove);
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.时间宽度ToolStripMenuItem,
+            this.光标数据ToolStripMenuItem,
+            this.数据秒点ToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(125, 70);
+            // 
+            // 时间宽度ToolStripMenuItem
+            // 
+            this.时间宽度ToolStripMenuItem.CheckOnClick = true;
+            this.时间宽度ToolStripMenuItem.Name = "时间宽度ToolStripMenuItem";
+            this.时间宽度ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.时间宽度ToolStripMenuItem.Text = "时间宽度";
+            this.时间宽度ToolStripMenuItem.Click += new System.EventHandler(this.时间宽度ToolStripMenuItem_Click);
+            // 
+            // 光标数据ToolStripMenuItem
+            // 
+            this.光标数据ToolStripMenuItem.CheckOnClick = true;
+            this.光标数据ToolStripMenuItem.Name = "光标数据ToolStripMenuItem";
+            this.光标数据ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.光标数据ToolStripMenuItem.Text = "光标数据";
+            this.光标数据ToolStripMenuItem.Click += new System.EventHandler(this.光标数据ToolStripMenuItem_Click);
+            // 
+            // 数据秒点ToolStripMenuItem
+            // 
+            this.数据秒点ToolStripMenuItem.CheckOnClick = true;
+            this.数据秒点ToolStripMenuItem.Name = "数据秒点ToolStripMenuItem";
+            this.数据秒点ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.数据秒点ToolStripMenuItem.Text = "数据描点";
+            this.数据秒点ToolStripMenuItem.Click += new System.EventHandler(this.数据秒点ToolStripMenuItem_Click);
+            // 
             // button6
             // 
             this.button6.Location = new System.Drawing.Point(635, 11);
@@ -114,44 +148,22 @@
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
-            // contextMenuStrip1
+            // button7
             // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.时间宽度ToolStripMenuItem,
-            this.光标数据ToolStripMenuItem,
-            this.数据秒点ToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 92);
-            // 
-            // 时间宽度ToolStripMenuItem
-            // 
-            this.时间宽度ToolStripMenuItem.CheckOnClick = true;
-            this.时间宽度ToolStripMenuItem.Name = "时间宽度ToolStripMenuItem";
-            this.时间宽度ToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
-            this.时间宽度ToolStripMenuItem.Text = "时间宽度";
-            this.时间宽度ToolStripMenuItem.Click += new System.EventHandler(this.时间宽度ToolStripMenuItem_Click);
-            // 
-            // 光标数据ToolStripMenuItem
-            // 
-            this.光标数据ToolStripMenuItem.CheckOnClick = true;
-            this.光标数据ToolStripMenuItem.Name = "光标数据ToolStripMenuItem";
-            this.光标数据ToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
-            this.光标数据ToolStripMenuItem.Text = "光标数据";
-            this.光标数据ToolStripMenuItem.Click += new System.EventHandler(this.光标数据ToolStripMenuItem_Click);
-            // 
-            // 数据秒点ToolStripMenuItem
-            // 
-            this.数据秒点ToolStripMenuItem.CheckOnClick = true;
-            this.数据秒点ToolStripMenuItem.Name = "数据秒点ToolStripMenuItem";
-            this.数据秒点ToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
-            this.数据秒点ToolStripMenuItem.Text = "数据描点";
-            this.数据秒点ToolStripMenuItem.Click += new System.EventHandler(this.数据秒点ToolStripMenuItem_Click);
+            this.button7.Location = new System.Drawing.Point(717, 12);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(87, 23);
+            this.button7.TabIndex = 7;
+            this.button7.Text = "字符串转二进制";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(810, 386);
+            this.Controls.Add(this.button7);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.button5);
@@ -180,6 +192,7 @@
         private System.Windows.Forms.ToolStripMenuItem 时间宽度ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 光标数据ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 数据秒点ToolStripMenuItem;
+        private System.Windows.Forms.Button button7;
     }
 }
 

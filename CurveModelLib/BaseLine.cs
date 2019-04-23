@@ -48,13 +48,6 @@ namespace CurveModelLib
             get;
             set;
         }
-
-        public virtual CanvasParam CanvasParam
-        {
-            get;
-            set;
-        }
-        public String Caption { set; get; }
         public abstract void Draw();
     }
 }

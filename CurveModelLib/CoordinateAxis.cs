@@ -12,67 +12,45 @@ namespace CurveModelLib
 {
     public class CoordinateAxis : BaseLine
     {
-        public CoordinateAxis(CoordinateParam coordinateParam)
-        {
-            this.coordinateParam = coordinateParam;
-        }
-        CoordinateParam coordinateParam { set; get; }
-        /// <summary>
-        /// 坐标轴名字 用于识别
-        /// </summary>
-        public CoordinateAxisName Name { set; get; }
-        /// <summary>
-        /// 刻度最大值
-        /// </summary>
-        public float MaxValue { set; get; }
-        /// <summary>
-        /// 刻度最小值
-        /// </summary>
-        public float MinValue { set; get; }
-        /// <summary>
-        /// 刻度间隔
-        /// </summary>
-        public float Interval { get; set; }
-        /// <summary>
-        /// 单位刻度长度
-        /// </summary>
-        public float UnitLength { set; get; }
-        /// <summary>
-        /// 坐标方向分横向 或 纵向
-        /// </summary>
-        public LineDireciton lineDirection
+        public List<CoordinateParam> coordianteParamList = new List<CoordinateParam>();
+        public float ArrowBlankLength
         {
             get;
             set;
         }
-        /// <summary>
-        /// 坐标位置分 左 或 右
-        /// </summary>
-        public LineLocation lineLocation
+
+        public float ArrowLength
         {
             get;
             set;
         }
+
         /// <summary>
-        /// 是否显示坐标轴
+        /// 横轴长度
         /// </summary>
-        public LineVisible lineVisible
+        public float HLength
         {
             get;
             set;
         }
+
         /// <summary>
-        /// 显示虚线
+        /// 纵轴长度
         /// </summary>
-        public VirtualLineVisible virtualLineVisible
+        public float VLength
         {
             get;
             set;
         }
-        /// <summary>
-        /// 坐标轴的位置序号
-        /// </summary>
-        public int Index { set; get; }
+        public CoordinateAxis(CanvasParam cp)
+        {
+            this.cp = cp;
+            ArrowBlankLength = 20;
+            ArrowLength = 5;
+            HLength = cp.HorizontalLength - ArrowLength - ArrowBlankLength;
+            VLength = cp.VerticalLength - ArrowLength - ArrowBlankLength;
+        }
+        CanvasParam cp { set; get; }
         public override void Draw()
         {
             Calculate();
@@ -95,8 +73,6 @@ namespace CurveModelLib
         private void Calculate()
         {
         }
-        private void SetParam()
-        { }
     }
 
 }

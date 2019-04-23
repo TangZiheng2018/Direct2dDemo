@@ -10,6 +10,7 @@ namespace CurveModelLib
     using DXGI = SharpDX.DXGI;
     using SharpDX.DirectWrite;
     using SharpDX.Mathematics.Interop;
+    using System.Windows.Forms;
 
     public class MainCurve
     {
@@ -19,14 +20,30 @@ namespace CurveModelLib
         D2D.RenderTargetProperties renderTargetProperties;
         D2D.HwndRenderTargetProperties hwndRenderTargetProperties = new D2D.HwndRenderTargetProperties();
         CanvasParam canvasParam = null;
-        CoordinateParam coordinateParam = null;
-        private List<CoordinateAxis> coordinateAxisList {set; get;}//坐标轴列表
+        CoordinateAxis coordinateAxis = null;
         public List<DataLine> dataLineList { set; get; }
-        public MainCurve(float width,float height)
+        public List<CoordinateParam> coordianteParamList = new List<CoordinateParam>();
+        private D2D.RenderTarget _renderTarget;
+        //public MainCurve(int width,int height)
+        public MainCurve(Control panel)
         {
-            InitCanvasParam(width, height);
-            InitCoordinateParam(canvasParam);
-            InitcoordinateAxis(coordinateParam,canvasParam);
+            renderTargetProperties = new D2D.RenderTargetProperties(D2D.RenderTargetType.Default, pf, 0, 0, D2D.RenderTargetUsage.None, D2D.FeatureLevel.Level_DEFAULT);
+            hwndRenderTargetProperties.Hwnd = panel.Handle;
+            hwndRenderTargetProperties.PixelSize = new SharpDX.Size2(panel.Width, panel.Height);
+            _renderTarget = new D2D.WindowRenderTarget(factory, renderTargetProperties, hwndRenderTargetProperties);
+            InitCanvasParam(panel.Width, panel.Height);
+            InitCoordinateAxis(canvasParam);
+            InitCoordinateParam();
+        }
+        public void Draw()
+        {
+            coordinateAxis.Draw();
+            foreach (var item in dataLineList)
+            {
+                item.coordianteParam = coordianteParamList.Find(t => t.Name == item.name);
+                item.cp = canvasParam;
+                item.Draw();
+            }
         }
         /// <summary>
         /// 初始化画布各种参数
@@ -41,114 +58,103 @@ namespace CurveModelLib
             canvasParam.VerticalLength = height;
             canvasParam.HorizontalLength = width;
             canvasParam.Padding = 0;
+            canvasParam._renderTarget = _renderTarget;
         }
-        /// <summary>
-        ///初始化坐标轴固定参数
-        /// </summary>
-        /// <param name="cp">画布参数</param>
-        private void InitCoordinateParam(CanvasParam cp)
+        private void InitCoordinateAxis(CanvasParam cp)
         {
-            coordinateParam.ArrowBlankLength = 20;
-            coordinateParam.ArrowLength = 5;
-            coordinateParam.HLength = cp.HorizontalLength - coordinateParam.ArrowLength - coordinateParam.ArrowBlankLength;
-            coordinateParam.VLength = cp.VerticalLength - coordinateParam.ArrowLength - coordinateParam.ArrowBlankLength;
+            RawColor4 color = new RawColor4(0, 0, 1, 1);
+            coordinateAxis = new CoordinateAxis(cp);
+            coordinateAxis.Color = color;
         }
         /// <summary>
-        /// 初始化坐标轴
+        /// 初始化坐标轴参数
         /// </summary>
         /// <param name="coordinateParam">坐标轴参数</param>
         /// <param name="cp">画布参数</param>
-        private void InitcoordinateAxis(CoordinateParam coordinateParam, CanvasParam cp)
+        private void InitCoordinateParam()
         {
-            RawColor4 color = new RawColor4(0, 0, 1, 1);
+            coordianteParamList.Clear();
+            CoordinateParam coordinateParamTime = new CoordinateParam();
+            coordinateParamTime.Caption = "min";
+            coordinateParamTime.Name = CoordinateAxisName.Time;
+            coordinateParamTime.virtualLineVisible = VirtualLineVisible.Visible;
+            coordinateParamTime.lineVisible = LineVisible.Visible;
+            coordinateParamTime.lineDirection = LineDireciton.Horizontal;
+            coordinateParamTime.MaxValue = 60;
+            coordinateParamTime.MinValue = 0;
+            coordinateParamTime.Interval = 10;
 
-            CoordinateAxis coordinateAxisTime = new CoordinateAxis(coordinateParam);
-            coordinateAxisTime.Name = CoordinateAxisName.Time;
-            coordinateAxisTime.CanvasParam = cp;
-            coordinateAxisTime.Color = color;
-            coordinateAxisTime.virtualLineVisible = VirtualLineVisible.Visible;
-            coordinateAxisTime.lineVisible = LineVisible.Visible;
-            coordinateAxisTime.lineDirection = LineDireciton.Horizontal;
-            coordinateAxisTime.Caption = "min";
-            coordinateAxisTime.MaxValue = 60;
-            coordinateAxisTime.MinValue = 0;
-            coordinateAxisTime.Interval = 10;
-            
-            CoordinateAxis coordinateAxisTemp = new CoordinateAxis(coordinateParam);
-            coordinateAxisTemp.Name = CoordinateAxisName.Temperature;
-            coordinateAxisTemp.CanvasParam = cp;
-            coordinateAxisTemp.Color = color;
-            coordinateAxisTemp.virtualLineVisible = VirtualLineVisible.Visible;
-            coordinateAxisTemp.lineVisible = LineVisible.Visible;
-            coordinateAxisTemp.lineDirection = LineDireciton.Vertical;
-            coordinateAxisTemp.lineLocation = LineLocation.Left;
-            coordinateAxisTemp.Caption = "℃";
-            coordinateAxisTemp.MaxValue = 40;
-            coordinateAxisTemp.MinValue = -40;
-            coordinateAxisTemp.Interval = 10;
+            CoordinateParam coordinateParamTemp = new CoordinateParam();
+            coordinateParamTemp.Caption = "℃";
+            coordinateParamTemp.Name = CoordinateAxisName.Temperature;
+            coordinateParamTemp.virtualLineVisible = VirtualLineVisible.Visible;
+            coordinateParamTemp.lineVisible = LineVisible.Visible;
+            coordinateParamTemp.lineDirection = LineDireciton.Vertical;
+            coordinateParamTemp.lineLocation = LineLocation.Left;
+            coordinateParamTemp.MaxValue = 40;
+            coordinateParamTemp.MinValue = -40;
+            coordinateParamTemp.Interval = 10;
+            coordinateParamTemp.LineWidth = 1;
 
-            CoordinateAxis coordinateAxisPower = new CoordinateAxis(coordinateParam);
-            coordinateAxisPower.Name = CoordinateAxisName.Power;
-            coordinateAxisPower.CanvasParam = cp;
-            coordinateAxisPower.Color = color;
-            coordinateAxisPower.virtualLineVisible = VirtualLineVisible.Hide;
-            coordinateAxisPower.lineVisible = LineVisible.Visible;
-            coordinateAxisPower.lineDirection = LineDireciton.Vertical;
-            coordinateAxisPower.lineLocation = LineLocation.Right;
-            coordinateAxisPower.Index = 0;
-            coordinateAxisPower.Caption = "Power";
-            coordinateAxisPower.MaxValue = 500;
-            coordinateAxisPower.MinValue = 0;
-            coordinateAxisPower.Interval = 50;
+            CoordinateParam coordinateParamPower = new CoordinateParam();
+            coordinateParamPower.Caption = "Power";
+            coordinateParamPower.Name = CoordinateAxisName.Power;
+            coordinateParamPower.virtualLineVisible = VirtualLineVisible.Hide;
+            coordinateParamPower.lineVisible = LineVisible.Visible;
+            coordinateParamPower.lineDirection = LineDireciton.Vertical;
+            coordinateParamPower.lineLocation = LineLocation.Right;
+            coordinateParamPower.Index = 0;
+            coordinateParamPower.MaxValue = 500;
+            coordinateParamPower.MinValue = 0;
+            coordinateParamPower.Interval = 50;
+            coordinateParamPower.LineWidth = 1;
 
-            CoordinateAxis coordinateAxisCurrent = new CoordinateAxis(coordinateParam);
-            coordinateAxisPower.Name = CoordinateAxisName.Current;
-            coordinateAxisCurrent.CanvasParam = cp;
-            coordinateAxisCurrent.Color = color;
-            coordinateAxisCurrent.virtualLineVisible = VirtualLineVisible.Hide;
-            coordinateAxisCurrent.lineVisible = LineVisible.Visible;
-            coordinateAxisCurrent.lineDirection = LineDireciton.Vertical;
-            coordinateAxisCurrent.lineLocation = LineLocation.Right;
-            coordinateAxisCurrent.Index = 1;
-            coordinateAxisCurrent.Caption = "I";
-            coordinateAxisCurrent.MaxValue = 5;
-            coordinateAxisCurrent.MinValue = 0;
-            coordinateAxisCurrent.Interval = 1;
+            CoordinateParam coordinateParamCurrent = new CoordinateParam();
+            coordinateParamCurrent.Caption = "I";
+            coordinateParamCurrent.Name = CoordinateAxisName.Current;
+            coordinateParamCurrent.virtualLineVisible = VirtualLineVisible.Hide;
+            coordinateParamCurrent.lineVisible = LineVisible.Visible;
+            coordinateParamCurrent.lineDirection = LineDireciton.Vertical;
+            coordinateParamCurrent.lineLocation = LineLocation.Right;
+            coordinateParamCurrent.Index = 1;
+            coordinateParamCurrent.MaxValue = 5;
+            coordinateParamCurrent.MinValue = 0;
+            coordinateParamCurrent.Interval = 1;
+            coordinateParamCurrent.LineWidth = 1;
 
-            CoordinateAxis coordinateAxisVoltage = new CoordinateAxis(coordinateParam);
-            coordinateAxisVoltage.Name = CoordinateAxisName.Voltage;
-            coordinateAxisVoltage.CanvasParam = cp;
-            coordinateAxisVoltage.Color = color;
-            coordinateAxisVoltage.virtualLineVisible = VirtualLineVisible.Hide;
-            coordinateAxisVoltage.lineVisible = LineVisible.Visible;
-            coordinateAxisVoltage.lineDirection = LineDireciton.Vertical;
-            coordinateAxisVoltage.lineLocation = LineLocation.Right;
-            coordinateAxisVoltage.Index = 1;
-            coordinateAxisVoltage.Caption = "Vol";
-            coordinateAxisVoltage.MaxValue = 400;
-            coordinateAxisVoltage.MinValue = 0;
-            coordinateAxisVoltage.Interval =50;
+            CoordinateParam coordinateParamVoltage = new CoordinateParam();
+            coordinateParamVoltage.Caption = "Vol";
+            coordinateParamVoltage.Name = CoordinateAxisName.Voltage;
+            coordinateParamVoltage.virtualLineVisible = VirtualLineVisible.Hide;
+            coordinateParamVoltage.lineVisible = LineVisible.Visible;
+            coordinateParamVoltage.lineDirection = LineDireciton.Vertical;
+            coordinateParamVoltage.lineLocation = LineLocation.Right;
+            coordinateParamVoltage.Index = 2;
+            coordinateParamVoltage.MaxValue = 400;
+            coordinateParamVoltage.MinValue = 0;
+            coordinateParamCurrent.Interval = 50;
+            coordinateParamCurrent.LineWidth = 1;
 
-            CoordinateAxis coordinateAxisPF = new CoordinateAxis(coordinateParam);
-            coordinateAxisPF.Name = CoordinateAxisName.PowerFactor;
-            coordinateAxisPF.CanvasParam = cp;
-            coordinateAxisPF.Color = color;
-            coordinateAxisPF.virtualLineVisible = VirtualLineVisible.Hide;
-            coordinateAxisPF.lineVisible = LineVisible.Visible;
-            coordinateAxisPF.lineDirection = LineDireciton.Vertical;
-            coordinateAxisPF.lineLocation = LineLocation.Right;
-            coordinateAxisPF.Index = 1;
-            coordinateAxisPF.Caption = "PF";
-            coordinateAxisPF.MaxValue = 1;
-            coordinateAxisPF.MinValue = 0;
-            coordinateAxisPF.Interval = 0.1F;
+            CoordinateParam coordinateParamPF = new CoordinateParam();
+            coordinateParamPF.Caption = "PF";
+            coordinateParamPF.Name = CoordinateAxisName.PowerFactor;
+            coordinateParamPF.virtualLineVisible = VirtualLineVisible.Hide;
+            coordinateParamPF.lineVisible = LineVisible.Visible;
+            coordinateParamPF.lineDirection = LineDireciton.Vertical;
+            coordinateParamPF.lineLocation = LineLocation.Right;
+            coordinateParamPF.Index = 3;
+            coordinateParamPF.MaxValue = 1;
+            coordinateParamPF.MinValue = 0;
+            coordinateParamPF.Interval = 0.1F;
+            coordinateParamPF.LineWidth = 1;
 
-            coordinateAxisList.Add(coordinateAxisTime);
-            coordinateAxisList.Add(coordinateAxisTemp);
-            coordinateAxisList.Add(coordinateAxisPower);
-            coordinateAxisList.Add(coordinateAxisCurrent);
-            coordinateAxisList.Add(coordinateAxisVoltage);
-            coordinateAxisList.Add(coordinateAxisPF);
+            coordianteParamList.Add(coordinateParamTime);
+            coordianteParamList.Add(coordinateParamTemp);
+            coordianteParamList.Add(coordinateParamPower);
+            coordianteParamList.Add(coordinateParamCurrent);
+            coordianteParamList.Add(coordinateParamVoltage);
+            coordianteParamList.Add(coordinateParamPF);
+            coordinateAxis.coordianteParamList = coordianteParamList;
         }
     }
 }
