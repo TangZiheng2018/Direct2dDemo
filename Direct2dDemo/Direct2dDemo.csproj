@@ -133,6 +133,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CurveModelLib\CurveModelLib.csproj">
+      <Project>{17e1df70-0cd5-4d20-b21a-978c1e3ee558}</Project>
+      <Name>CurveModelLib</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Curve\Curve.csproj">
       <Project>{c28efb61-0747-45ab-837e-43fff9cb7021}</Project>
       <Name>Curve</Name>

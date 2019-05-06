@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 namespace CurveModelLib
 {
-    public class CoordinateParam
+    public class CoordinateLine:BaseLine
     {
         public string Caption { get; set; }
         public CoordinateAxisName Name { get; set; }
@@ -23,6 +23,13 @@ namespace CurveModelLib
         public float Interval { set; get; }
         public int Index { set; get; }
         public float UnitLength { set; get; }
-        public float LineWidth { set; get; }
+        public float ArrowPointX1 { set; get; }
+        public float ArrowPointY1 { set; get; }
+        public float ArrowPointX2 { set; get; }
+        public float ArrowPointY2 { set; get; }
+        public override void Calculate()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

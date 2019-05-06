@@ -60,7 +60,7 @@
     <Compile Include="BaseLine.cs" />
     <Compile Include="CanvasParam.cs" />
     <Compile Include="CoordinateAxis.cs" />
-    <Compile Include="CoordinateParam.cs" />
+    <Compile Include="CoordinateLine.cs" />
     <Compile Include="LineDireciton.cs" />
     <Compile Include="LineLocation.cs" />
     <Compile Include="LineVisible.cs" />

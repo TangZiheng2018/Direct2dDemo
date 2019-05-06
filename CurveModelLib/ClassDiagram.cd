@@ -3,36 +3,29 @@
   <Class Name="CurveModelLib.DataLine">
     <Position X="6" Y="4.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAAEAAAAAAAAAAAAAAg=</HashCode>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAGAEAAAACIAAAACAAAg=</HashCode>
       <FileName>DataLine.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CurveModelLib.MainCurve">
     <Position X="1" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAIAAAABAgAAAABAAAQCBAAAgAAAAAAAAAQAAIAAA=</HashCode>
+      <HashCode>AEAAAAAAABAgAgAABAAAQClAAAAABAAAAAAAQgAIAAA=</HashCode>
       <FileName>MainCurve.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CurveModelLib.BaseLine">
     <Position X="6" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAEAQgAACAAAAAAgAAAAQAAACAAAgAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAEAQAAACAAAAAAgACAAAAAAAAAAgAAAAAA=</HashCode>
       <FileName>BaseLine.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CurveModelLib.CanvasParam">
     <Position X="8.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAgAAAAAAAADAAAAAAAAAAAAAQAAAAAAAIAAAAAAAA=</HashCode>
+      <HashCode>AAAgAAAAAAAADAAAAAAAAAEAAAQAAAAAAAIAAAAAAAA=</HashCode>
       <FileName>CanvasParam.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="CurveModelLib.CoordinateAxis">
-    <Position X="8.5" Y="4.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>ABAAIAAAAAACAggBAIAgAAYAAGAIAAACAAEgAAAAAAA=</HashCode>
-      <FileName>CoordinateAxis.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CurveModelLib.CoordinateParam">
@@ -47,6 +40,13 @@
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAgQAAAAAA=</HashCode>
       <FileName>LineDataModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CurveModelLib.CoordinateAxis">
+    <Position X="8.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAACAAAAAAAAiAAAAAIIAAAAgACAACAAIAAAAABABA=</HashCode>
+      <FileName>CoordinateAxis.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Enum Name="VirtualLineVisible">

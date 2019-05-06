@@ -13,42 +13,42 @@ namespace CurveModelLib
 {
     public abstract class BaseLine
     {
-        public virtual RawColor4 Color
+        public RawColor4 Color
         {
             get;
             set;
         }
 
-        public virtual float StartPointX
+        public float StartPointX
         {
             get;
             set;
         }
 
-        public virtual float EndPointX
+        public float EndPointX
         {
             get;
             set;
         }
 
-        public virtual float StartPointY
+        public float StartPointY
         {
             get;
             set;
         }
 
-        public virtual float EndPointY
+        public float EndPointY
         {
             get;
             set;
         }
 
-        public virtual float LineWidth
+        public float LineWidth
         {
             get;
             set;
         }
-        public abstract void Draw();
+        public abstract void Calculate();
     }
 }
 

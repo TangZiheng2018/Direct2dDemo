@@ -17,10 +17,15 @@ namespace CurveModelLib
         public  CoordinateAxisName name { set; get; }
         public CanvasParam cp { set; get; }
         public string Caption { get; set; } 
-        public CoordinateParam coordianteParam {set; get;}
-        public override void Draw()
+        public CoordinateLine coordinateLine { set; get;}
+        public  void Draw()
         {
-            UnitLength = coordianteParam.UnitLength;
+            UnitLength = coordinateLine.UnitLength;
+            throw new NotImplementedException();
+        }
+
+        public override void Calculate()
+        {
             throw new NotImplementedException();
         }
     }

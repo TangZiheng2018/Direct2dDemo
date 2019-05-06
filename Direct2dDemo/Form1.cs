@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using SharpDX.Direct2D1;
 using SharpDX.DXGI;
 using Curve;
+using CurveModelLib;
 namespace Direct2dDemo
 {
     using D2D = SharpDX.Direct2D1;
@@ -32,7 +33,8 @@ namespace Direct2dDemo
         private D2D.RenderTarget _renderTarget;
         private void Form1_Load(object sender, EventArgs e)
         {
-            mc = new MainCurve(panel1);
+            mc = new Curve.MainCurve(panel1);
+            curvemc = new CurveModelLib.MainCurve(panel1);
             renderTargetProperties = new D2D.RenderTargetProperties(D2D.RenderTargetType.Default, pf, 0, 0, D2D.RenderTargetUsage.None, D2D.FeatureLevel.Level_DEFAULT);
             hwndRenderTargetProperties.Hwnd = panel1.Handle;
             hwndRenderTargetProperties.PixelSize = new SharpDX.Size2(panel1.Width, panel1.Height);
@@ -124,7 +126,8 @@ namespace Direct2dDemo
             _renderTarget.DrawText("-20", textformat, new RawRectangleF(0, 0, 200, 200), brush);
             _renderTarget.EndDraw();
         }
-        MainCurve mc = null;
+        Curve.MainCurve mc = null;
+        CurveModelLib.MainCurve curvemc = null;
         private void button6_Click(object sender, EventArgs e)
         {
             mc.Draw(100, 100);
@@ -205,5 +208,11 @@ namespace Direct2dDemo
             }
             return Encoding.Unicode.GetString(data, 0, data.Length);
         }
-    }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            curvemc.Draw();
+
+        }
+}
 }

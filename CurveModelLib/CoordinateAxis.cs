@@ -4,16 +4,22 @@
 //     如果重新生成代码，将丢失对此文件所做的更改。
 // </auto-generated>
 //------------------------------------------------------------------------------
+using SharpDX.Mathematics.Interop;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 namespace CurveModelLib
 {
-    public class CoordinateAxis : BaseLine
+    public class CoordinateAxis
     {
-        public List<CoordinateParam> coordianteParamList = new List<CoordinateParam>();
-        public float ArrowBlankLength
+        public List<CoordinateLine> coordianteParamList = new List<CoordinateLine>();
+        public float ArrowXBlankLength
+        {
+            get;
+            set;
+        }
+        public float ArrowYBlankLength
         {
             get;
             set;
@@ -33,7 +39,6 @@ namespace CurveModelLib
             get;
             set;
         }
-
         /// <summary>
         /// 纵轴长度
         /// </summary>
@@ -42,36 +47,107 @@ namespace CurveModelLib
             get;
             set;
         }
+        public float LineInterval
+        {
+            get;set;
+        }
+       private RawColor4 color { set; get; }
         public CoordinateAxis(CanvasParam cp)
         {
+            color = new RawColor4(0, 0, 1, 1);
             this.cp = cp;
-            ArrowBlankLength = 20;
+            ArrowXBlankLength = 100;
+            ArrowYBlankLength = 50;
             ArrowLength = 5;
-            HLength = cp.HorizontalLength - ArrowLength - ArrowBlankLength;
-            VLength = cp.VerticalLength - ArrowLength - ArrowBlankLength;
+            HLength = cp.HorizontalLength - ArrowLength - ArrowXBlankLength;
+            VLength = cp.VerticalLength - ArrowLength - ArrowYBlankLength;
+            LineInterval = 20;//坐标线之间的距离 仅用于右侧线
         }
         CanvasParam cp { set; get; }
-        public override void Draw()
+        private void calculate()
         {
-            Calculate();
-            throw new NotImplementedException();
+            foreach (var item in coordianteParamList)
+            {
+                if (item.lineDirection==LineDireciton.Horizontal)
+                {
+                    item.StartPointX = cp.OriginX;
+                    item.StartPointY = cp.OriginY;
+                    item.EndPointX = cp.OriginX + HLength+ArrowLength;
+                    item.EndPointY = cp.OriginY;
+                    item.ArrowPointX1 = item.EndPointX - ArrowLength;
+                    item.ArrowPointY1 = item.EndPointY - ArrowLength;
+                    item.ArrowPointX2 = item.EndPointX - ArrowLength;
+                    item.ArrowPointY2 = item.EndPointY + ArrowLength;
+                }
+                else
+                {
+                    if (item.lineLocation == LineLocation.Right)
+                    {
+                        item.StartPointX = cp.OriginX + HLength + item.Index * LineInterval;
+                        item.StartPointY = cp.OriginY;
+                        item.EndPointX = cp.OriginX + HLength + item.Index * LineInterval;
+                        item.EndPointY = cp.OriginY - VLength-ArrowLength;
+                        item.ArrowPointX1 = item.EndPointX - ArrowLength;
+                        item.ArrowPointY1 = item.EndPointY + ArrowLength;
+                        item.ArrowPointX2 = item.EndPointX + ArrowLength;
+                        item.ArrowPointY2 = item.EndPointY + ArrowLength;
+                    }
+                    else
+                    {
+                        item.StartPointX = cp.OriginX;
+                        item.StartPointY = cp.OriginY;
+                        item.EndPointX = cp.OriginX;
+                        item.EndPointY = cp.OriginY - VLength- ArrowLength;
+                        item.ArrowPointX1 = item.EndPointX - ArrowLength;
+                        item.ArrowPointY1 = item.EndPointY + ArrowLength;
+                        item.ArrowPointX2 = item.EndPointX + ArrowLength;
+                        item.ArrowPointY2 = item.EndPointY + ArrowLength;
+                    }
+                }
+
+            }
+        }
+        public void Draw()
+        {
+            calculate();
+            drawLine();
+            drawArrow();
         }
         /// <summary>
         /// 绘制刻度线
         /// </summary>
-        private void DrawScale()
+        private void drawScale()
         {
-            return;
         }
         /// <summary>
         /// 绘制标识
         /// </summary>
-        private void DrawLegend()
+        private void drawLegend()
         {
             throw new System.NotImplementedException();
         }
-        private void Calculate()
+        private void drawArrow()
         {
+            var brush = new SharpDX.Direct2D1.SolidColorBrush(cp._renderTarget, new RawColor4(0, 0, 1, 1));
+            foreach (var item in coordianteParamList)
+            {
+                RawVector2 pointS = new RawVector2(item.EndPointX, item.EndPointY);
+                RawVector2 pointE1 = new RawVector2(item.ArrowPointX1, item.ArrowPointY1);
+                RawVector2 pointE2 = new RawVector2(item.ArrowPointX2, item.ArrowPointY2);
+                cp._renderTarget.DrawLine(pointS, pointE1, brush, item.LineWidth);
+                cp._renderTarget.DrawLine(pointS, pointE2, brush, item.LineWidth);
+            }
+        }
+        private void drawLine()
+        {
+            var brush = new SharpDX.Direct2D1.SolidColorBrush(cp._renderTarget, new RawColor4(0, 0, 1, 1));
+            foreach (var item in coordianteParamList)
+            {
+                RawVector2 pointS = new RawVector2(item.StartPointX, item.StartPointY);
+                RawVector2 pointE = new RawVector2(item.EndPointX, item.EndPointY);
+                cp._renderTarget.DrawLine(pointS, pointE, brush, item.LineWidth);
+
+            }
         }
     }
 

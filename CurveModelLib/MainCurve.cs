@@ -22,7 +22,7 @@ namespace CurveModelLib
         CanvasParam canvasParam = null;
         CoordinateAxis coordinateAxis = null;
         public List<DataLine> dataLineList { set; get; }
-        public List<CoordinateParam> coordianteParamList = new List<CoordinateParam>();
+        public List<CoordinateLine> coordianteParamList = new List<CoordinateLine>();
         private D2D.RenderTarget _renderTarget;
         //public MainCurve(int width,int height)
         public MainCurve(Control panel)
@@ -37,13 +37,16 @@ namespace CurveModelLib
         }
         public void Draw()
         {
+            canvasParam._renderTarget.BeginDraw();
+            _renderTarget.Clear(new RawColor4(0.752F, 0.862F, 0752F, 1));
             coordinateAxis.Draw();
-            foreach (var item in dataLineList)
-            {
-                item.coordianteParam = coordianteParamList.Find(t => t.Name == item.name);
-                item.cp = canvasParam;
-                item.Draw();
-            }
+            canvasParam._renderTarget.EndDraw();
+            //foreach (var item in dataLineList)
+            //{
+            //    item.coordinateLine = coordianteParamList.Find(t => t.Name == item.name);
+            //    item.cp = canvasParam;
+            //    item.Draw();
+            //}
         }
         /// <summary>
         /// 初始化画布各种参数
@@ -62,9 +65,7 @@ namespace CurveModelLib
         }
         private void InitCoordinateAxis(CanvasParam cp)
         {
-            RawColor4 color = new RawColor4(0, 0, 1, 1);
             coordinateAxis = new CoordinateAxis(cp);
-            coordinateAxis.Color = color;
         }
         /// <summary>
         /// 初始化坐标轴参数
@@ -74,7 +75,7 @@ namespace CurveModelLib
         private void InitCoordinateParam()
         {
             coordianteParamList.Clear();
-            CoordinateParam coordinateParamTime = new CoordinateParam();
+            CoordinateLine coordinateParamTime = new CoordinateLine();
             coordinateParamTime.Caption = "min";
             coordinateParamTime.Name = CoordinateAxisName.Time;
             coordinateParamTime.virtualLineVisible = VirtualLineVisible.Visible;
@@ -83,8 +84,9 @@ namespace CurveModelLib
             coordinateParamTime.MaxValue = 60;
             coordinateParamTime.MinValue = 0;
             coordinateParamTime.Interval = 10;
+            coordinateParamTime.LineWidth = 1;
 
-            CoordinateParam coordinateParamTemp = new CoordinateParam();
+            CoordinateLine coordinateParamTemp = new CoordinateLine();
             coordinateParamTemp.Caption = "℃";
             coordinateParamTemp.Name = CoordinateAxisName.Temperature;
             coordinateParamTemp.virtualLineVisible = VirtualLineVisible.Visible;
@@ -96,7 +98,7 @@ namespace CurveModelLib
             coordinateParamTemp.Interval = 10;
             coordinateParamTemp.LineWidth = 1;
 
-            CoordinateParam coordinateParamPower = new CoordinateParam();
+            CoordinateLine coordinateParamPower = new CoordinateLine();
             coordinateParamPower.Caption = "Power";
             coordinateParamPower.Name = CoordinateAxisName.Power;
             coordinateParamPower.virtualLineVisible = VirtualLineVisible.Hide;
@@ -107,9 +109,9 @@ namespace CurveModelLib
             coordinateParamPower.MaxValue = 500;
             coordinateParamPower.MinValue = 0;
             coordinateParamPower.Interval = 50;
-            coordinateParamPower.LineWidth = 1;
+            coordinateParamPower.LineWidth = 0.5F;
 
-            CoordinateParam coordinateParamCurrent = new CoordinateParam();
+            CoordinateLine coordinateParamCurrent = new CoordinateLine();
             coordinateParamCurrent.Caption = "I";
             coordinateParamCurrent.Name = CoordinateAxisName.Current;
             coordinateParamCurrent.virtualLineVisible = VirtualLineVisible.Hide;
@@ -120,9 +122,9 @@ namespace CurveModelLib
             coordinateParamCurrent.MaxValue = 5;
             coordinateParamCurrent.MinValue = 0;
             coordinateParamCurrent.Interval = 1;
-            coordinateParamCurrent.LineWidth = 1;
+            coordinateParamCurrent.LineWidth = 0.5F;
 
-            CoordinateParam coordinateParamVoltage = new CoordinateParam();
+            CoordinateLine coordinateParamVoltage = new CoordinateLine();
             coordinateParamVoltage.Caption = "Vol";
             coordinateParamVoltage.Name = CoordinateAxisName.Voltage;
             coordinateParamVoltage.virtualLineVisible = VirtualLineVisible.Hide;
@@ -132,10 +134,10 @@ namespace CurveModelLib
             coordinateParamVoltage.Index = 2;
             coordinateParamVoltage.MaxValue = 400;
             coordinateParamVoltage.MinValue = 0;
-            coordinateParamCurrent.Interval = 50;
-            coordinateParamCurrent.LineWidth = 1;
+            coordinateParamVoltage.Interval = 50;
+            coordinateParamVoltage.LineWidth = 0.5F;
 
-            CoordinateParam coordinateParamPF = new CoordinateParam();
+            CoordinateLine coordinateParamPF = new CoordinateLine();
             coordinateParamPF.Caption = "PF";
             coordinateParamPF.Name = CoordinateAxisName.PowerFactor;
             coordinateParamPF.virtualLineVisible = VirtualLineVisible.Hide;
@@ -146,7 +148,7 @@ namespace CurveModelLib
             coordinateParamPF.MaxValue = 1;
             coordinateParamPF.MinValue = 0;
             coordinateParamPF.Interval = 0.1F;
-            coordinateParamPF.LineWidth = 1;
+            coordinateParamPF.LineWidth = 0.5F;
 
             coordianteParamList.Add(coordinateParamTime);
             coordianteParamList.Add(coordinateParamTemp);
