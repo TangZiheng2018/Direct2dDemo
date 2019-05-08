@@ -4,6 +4,7 @@
 //     如果重新生成代码，将丢失对此文件所做的更改。
 // </auto-generated>
 //------------------------------------------------------------------------------
+using SharpDX.Mathematics.Interop;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,8 +19,8 @@ namespace CurveModelLib
         public LineVisible lineVisible { get; set; }
         public LineDireciton lineDirection { get; set; }
         public LineLocation lineLocation { set; get; }
-        public int MaxValue { get; set; }
-        public int MinValue { get; set; }
+        public float MaxValue { get; set; }
+        public float MinValue { get; set; }
         public float Interval { set; get; }
         public int Index { set; get; }
         public float UnitLength { set; get; }
@@ -27,6 +28,7 @@ namespace CurveModelLib
         public float ArrowPointY1 { set; get; }
         public float ArrowPointX2 { set; get; }
         public float ArrowPointY2 { set; get; }
+        public List<Tuple<RawVector2, RawVector2>> scalePointList = new List<Tuple<RawVector2, RawVector2>>();
         public override void Calculate()
         {
             throw new NotImplementedException();

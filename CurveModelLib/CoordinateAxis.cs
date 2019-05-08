@@ -24,6 +24,7 @@ namespace CurveModelLib
             get;
             set;
         }
+        public float ScaleLength { set; get; }
 
         public float ArrowLength
         {
@@ -49,9 +50,9 @@ namespace CurveModelLib
         }
         public float LineInterval
         {
-            get;set;
+            get; set;
         }
-       private RawColor4 color { set; get; }
+        private RawColor4 color { set; get; }
         public CoordinateAxis(CanvasParam cp)
         {
             color = new RawColor4(0, 0, 1, 1);
@@ -59,6 +60,7 @@ namespace CurveModelLib
             ArrowXBlankLength = 100;
             ArrowYBlankLength = 50;
             ArrowLength = 5;
+            ScaleLength = 5;
             HLength = cp.HorizontalLength - ArrowLength - ArrowXBlankLength;
             VLength = cp.VerticalLength - ArrowLength - ArrowYBlankLength;
             LineInterval = 20;//坐标线之间的距离 仅用于右侧线
@@ -68,16 +70,18 @@ namespace CurveModelLib
         {
             foreach (var item in coordianteParamList)
             {
-                if (item.lineDirection==LineDireciton.Horizontal)
+                if (item.lineDirection == LineDireciton.Horizontal)
                 {
+                    //计算线公式
                     item.StartPointX = cp.OriginX;
                     item.StartPointY = cp.OriginY;
-                    item.EndPointX = cp.OriginX + HLength+ArrowLength;
+                    item.EndPointX = cp.OriginX + HLength + ArrowLength + ArrowXBlankLength / 2;
                     item.EndPointY = cp.OriginY;
+                    //计算箭头公式
                     item.ArrowPointX1 = item.EndPointX - ArrowLength;
-                    item.ArrowPointY1 = item.EndPointY - ArrowLength;
+                    item.ArrowPointY1 = item.EndPointY - 2;
                     item.ArrowPointX2 = item.EndPointX - ArrowLength;
-                    item.ArrowPointY2 = item.EndPointY + ArrowLength;
+                    item.ArrowPointY2 = item.EndPointY + 2;
                 }
                 else
                 {
@@ -86,45 +90,152 @@ namespace CurveModelLib
                         item.StartPointX = cp.OriginX + HLength + item.Index * LineInterval;
                         item.StartPointY = cp.OriginY;
                         item.EndPointX = cp.OriginX + HLength + item.Index * LineInterval;
-                        item.EndPointY = cp.OriginY - VLength-ArrowLength;
-                        item.ArrowPointX1 = item.EndPointX - ArrowLength;
-                        item.ArrowPointY1 = item.EndPointY + ArrowLength;
-                        item.ArrowPointX2 = item.EndPointX + ArrowLength;
-                        item.ArrowPointY2 = item.EndPointY + ArrowLength;
+                        item.EndPointY = cp.OriginY - VLength - ArrowLength - ArrowYBlankLength / 5;
                     }
                     else
                     {
                         item.StartPointX = cp.OriginX;
                         item.StartPointY = cp.OriginY;
                         item.EndPointX = cp.OriginX;
-                        item.EndPointY = cp.OriginY - VLength- ArrowLength;
-                        item.ArrowPointX1 = item.EndPointX - ArrowLength;
-                        item.ArrowPointY1 = item.EndPointY + ArrowLength;
-                        item.ArrowPointX2 = item.EndPointX + ArrowLength;
-                        item.ArrowPointY2 = item.EndPointY + ArrowLength;
+                        item.EndPointY = cp.OriginY - VLength - ArrowYBlankLength / 5;
                     }
+                    item.ArrowPointX1 = item.EndPointX - 2;
+                    item.ArrowPointY1 = item.EndPointY + ArrowLength;
+                    item.ArrowPointX2 = item.EndPointX + 2;
+                    item.ArrowPointY2 = item.EndPointY + ArrowLength;
                 }
 
             }
         }
+        private void calculateScale()
+        {
+            foreach (var item in coordianteParamList)
+            {
+                item.scalePointList.Clear();
+                float scaleCount = (item.MaxValue - item.MinValue) / item.Interval + 1;
+
+                if (item.lineDirection == LineDireciton.Horizontal)
+                {
+                    item.UnitLength = HLength / (item.MaxValue - item.MinValue);
+                    for (int i = 0; i < scaleCount; i++)
+                    {
+                        Tuple<RawVector2, RawVector2> scalePoint = new Tuple<RawVector2, RawVector2>(new RawVector2(item.StartPointX + item.UnitLength * i * item.Interval, item.StartPointY), new RawVector2(item.StartPointX + item.UnitLength * i * item.Interval, item.StartPointY + ScaleLength));
+                        item.scalePointList.Add(scalePoint);
+                    }
+                }
+                else
+                {
+                    item.UnitLength = VLength / (item.MaxValue - item.MinValue);
+                    if (item.lineLocation == LineLocation.Right)
+                    {
+                        for (int i = 0; i < scaleCount; i++)
+                        {
+                            Tuple<RawVector2, RawVector2> scalePoint = new Tuple<RawVector2, RawVector2>(new RawVector2(item.StartPointX, item.StartPointY - item.UnitLength * i * item.Interval), new RawVector2(item.StartPointX + ScaleLength, item.StartPointY - item.UnitLength * i * item.Interval));
+                            item.scalePointList.Add(scalePoint);
+                        }
+                    }
+                    else
+                    {
+                        for (int i = 0; i < scaleCount; i++)
+                        {
+                            Tuple<RawVector2, RawVector2> scalePoint = new Tuple<RawVector2, RawVector2>(new RawVector2(item.StartPointX, item.StartPointY - item.UnitLength * i * item.Interval), new RawVector2(item.StartPointX - ScaleLength, item.StartPointY - item.UnitLength * i * item.Interval));
+                            item.scalePointList.Add(scalePoint);
+                        }
+                    }
+                }
+            }
+
+        }
         public void Draw()
         {
             calculate();
+            calculateScale();
             drawLine();
             drawArrow();
+            drawScale();
+            drawLegend();
         }
         /// <summary>
         /// 绘制刻度线
         /// </summary>
         private void drawScale()
         {
+            var brush = new SharpDX.Direct2D1.SolidColorBrush(cp._renderTarget, new RawColor4(0, 0, 1, 1));
+            var strokeStyleProperties = new SharpDX.Direct2D1.StrokeStyleProperties();
+            strokeStyleProperties.DashStyle = SharpDX.Direct2D1.DashStyle.Custom;
+            float[] dashes = { 10, 5 };
+            var strokeStyle = new SharpDX.Direct2D1.StrokeStyle(cp.factory, strokeStyleProperties, dashes);
+            foreach (var item in coordianteParamList)
+            {
+                foreach (var C in item.scalePointList)
+                {
+                    cp._renderTarget.DrawLine(C.Item1, C.Item2, brush, item.LineWidth);
+                    //是否显示虚线
+                    if (item.virtualLineVisible == VirtualLineVisible.Visible)
+                    {
+                        if (item.lineDirection == LineDireciton.Horizontal)
+                        {
+                            RawVector2 rv = new RawVector2();
+                            rv.X = C.Item1.X;
+                            rv.Y = C.Item1.Y - VLength;
+                            cp._renderTarget.DrawLine(C.Item1, rv, brush, 0.5F, strokeStyle);
+                        }
+                        else
+                        {
+                            if (item.lineLocation == LineLocation.Right)
+                            {
+                                RawVector2 rv = new RawVector2();
+                                rv.X = C.Item1.X - HLength - item.Index * LineInterval;
+                                rv.Y = C.Item1.Y;
+                                cp._renderTarget.DrawLine(C.Item1, rv, brush, 0.5F, strokeStyle);
+                            }
+                            else
+                            {
+                                RawVector2 rv = new RawVector2();
+                                rv.X = C.Item1.X+HLength;
+                                rv.Y = C.Item1.Y;
+                                cp._renderTarget.DrawLine(C.Item1, rv, brush, 0.5F, strokeStyle);
+                            }
+
+                        }
+                    }
+                }
+            }
         }
         /// <summary>
         /// 绘制标识
         /// </summary>
         private void drawLegend()
         {
-            throw new System.NotImplementedException();
+            var brush = new SharpDX.Direct2D1.SolidColorBrush(cp._renderTarget, new RawColor4(0, 0, 1, 1));
+            var textformat = new SharpDX.DirectWrite.TextFormat(cp.dwFactory, "Arial", 12);
+            foreach (var item in coordianteParamList)
+            {
+                if (item.lineDirection == LineDireciton.Horizontal)
+                {
+                    for (int i = 0; i < item.scalePointList.Count; i++)
+                    {
+                        cp._renderTarget.DrawText((item.MinValue + i * item.Interval).ToString(), textformat, new RawRectangleF(item.scalePointList[i].Item2.X - 5, item.scalePointList[i].Item2.Y, item.scalePointList[i].Item2.X + 200, item.scalePointList[i].Item2.Y + 200), brush);
+                    }
+                }
+                else
+                {
+                    if (item.lineLocation == LineLocation.Right)
+                    {
+                        for (int i = 0; i < item.scalePointList.Count; i++)
+                        {
+                            cp._renderTarget.DrawText((item.MinValue + i * item.Interval).ToString(), textformat, new RawRectangleF(item.scalePointList[i].Item2.X, item.scalePointList[i].Item2.Y - 8, item.scalePointList[i].Item2.X + 200, item.scalePointList[i].Item2.Y + 200), brush);
+                        }
+                    }
+                    else
+                    {
+                        for (int i = 0; i < item.scalePointList.Count; i++)
+                        {
+                            cp._renderTarget.DrawText((item.MinValue + i * item.Interval).ToString(), textformat, new RawRectangleF(item.scalePointList[i].Item2.X - 15, item.scalePointList[i].Item2.Y - 8, item.scalePointList[i].Item2.X + 200, item.scalePointList[i].Item2.Y), brush);
+                        }
+                    }
+                }
+            }
         }
         private void drawArrow()
         {
@@ -146,7 +257,6 @@ namespace CurveModelLib
                 RawVector2 pointS = new RawVector2(item.StartPointX, item.StartPointY);
                 RawVector2 pointE = new RawVector2(item.EndPointX, item.EndPointY);
                 cp._renderTarget.DrawLine(pointS, pointE, brush, item.LineWidth);
-
             }
         }
     }

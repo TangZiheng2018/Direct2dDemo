@@ -97,10 +97,13 @@
             // 
             // panel1
             // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.ContextMenuStrip = this.contextMenuStrip1;
-            this.panel1.Location = new System.Drawing.Point(13, 56);
+            this.panel1.Location = new System.Drawing.Point(1, 54);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(785, 318);
+            this.panel1.Size = new System.Drawing.Size(808, 331);
             this.panel1.TabIndex = 5;
             this.panel1.Click += new System.EventHandler(this.panel1_Click);
             this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
